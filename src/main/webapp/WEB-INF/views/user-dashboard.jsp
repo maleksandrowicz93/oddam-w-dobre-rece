@@ -14,10 +14,7 @@
                 <ul class="dropdown">
                     <li><a href="/profile">Profil</a></li>
                     <li><a href="/settings">Ustawienia</a></li>
-                    <li><a href="/admins">Administratorzy</a></li>
-                    <li><a href="/users">Użytkownicy</a></li>
-                    <li><a href="/organizations">Organizajce</a></li>
-                    <li><a href="/gifts">Dary</a></li>
+                    <li><a href="/collections">Moje zbiórki</a></li>
                     <li><a href="/logout">Wyloguj</a></li>
                 </ul>
             </li>
