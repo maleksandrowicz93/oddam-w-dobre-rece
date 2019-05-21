@@ -2,11 +2,13 @@ package com.github.maleksandrowicz93.oddamwdobrerece.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.sql.DataSource;
 
@@ -24,10 +26,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
+    @Bean("authenticationManager")
+    @Override
+    public AuthenticationManager authenticationManager() throws Exception {
+        return super.authenticationManager();
+    }
+
+    @Bean public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
+        return new MySimpleUrlAuthenticationSuccessHandler();
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("admin").password(passwordEncoder().encode("pass")).roles("ADMIN");
+                .withUser("admin@admin.pl").password(passwordEncoder().encode("pass")).roles("ADMIN")
+                .and()
+                .withUser("user@user.pl").password(passwordEncoder().encode("pass")).roles("USER");
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder())
@@ -38,18 +52,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure (HttpSecurity http) throws Exception {
         http.authorizeRequests()
+//                .antMatchers("/app/**", "/admin/**").permitAll()
                 .antMatchers("/", "/index.html").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/register").permitAll()
                 .antMatchers("/login").anonymous()
-                .antMatchers("/app/**").hasRole("USER")
+                .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
+                .antMatchers("/app", "/app/**").hasRole("USER")
+                .antMatchers("/static/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
             .formLogin()
                 .loginPage("/login")
-                .usernameParameter("username")
+                .usernameParameter("email")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/app", true)
+                .successHandler(myAuthenticationSuccessHandler())
+                .failureUrl("/login?error")
                 .and()
             .logout()
                 .logoutUrl("/logout")
