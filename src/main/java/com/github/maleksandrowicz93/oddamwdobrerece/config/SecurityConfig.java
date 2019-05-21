@@ -1,6 +1,5 @@
 package com.github.maleksandrowicz93.oddamwdobrerece.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -56,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/app/**", "/admin/**").permitAll()
                 .antMatchers("/", "/index.html").permitAll()
                 .antMatchers("/register").permitAll()
-                .antMatchers("/login").permitAll()
+                .antMatchers("/login").anonymous()
                 .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
                 .antMatchers("/app", "/app/**").hasRole("USER")
                 .antMatchers("/static/**").permitAll()
@@ -64,9 +63,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .formLogin()
                 .loginPage("/login")
-                .usernameParameter("username")
+                .usernameParameter("email")
                 .passwordParameter("password")
                 .successHandler(myAuthenticationSuccessHandler())
+                .failureUrl("/login?error")
                 .and()
             .logout()
                 .logoutUrl("/logout")
