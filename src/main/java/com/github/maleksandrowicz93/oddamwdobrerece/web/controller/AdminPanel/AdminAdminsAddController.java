@@ -1,4 +1,4 @@
-package com.github.maleksandrowicz93.oddamwdobrerece.web.controller;
+package com.github.maleksandrowicz93.oddamwdobrerece.web.controller.AdminPanel;
 
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.User;
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.UserRepository;
@@ -11,21 +11,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/admin/admins")
-public class AdminAdminsController {
+public class AdminAdminsAddController {
 
     private UserRepository userRepository;
 
-    public AdminAdminsController(UserRepository userRepository) {
+    public AdminAdminsAddController(UserRepository userRepository) {
         this.userRepository = userRepository;
-    }
-
-    @GetMapping
-    public String displayAdminsCrudPage() {
-        return "admin-admins";
     }
 
     @GetMapping("/add")
@@ -40,11 +33,6 @@ public class AdminAdminsController {
         User newAdmin = Converters.userDtoToUser(adminDTO);
         userRepository.save(newAdmin);
         return "redirect:/admin/admins";
-    }
-
-    @ModelAttribute("admins")
-    public List<User> getAllAdmins() {
-        return userRepository.findAllByIsAdmin(true);
     }
 
 }

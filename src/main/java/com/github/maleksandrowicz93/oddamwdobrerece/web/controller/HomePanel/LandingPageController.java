@@ -1,4 +1,4 @@
-package com.github.maleksandrowicz93.oddamwdobrerece.web.controller;
+package com.github.maleksandrowicz93.oddamwdobrerece.web.controller.HomePanel;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
