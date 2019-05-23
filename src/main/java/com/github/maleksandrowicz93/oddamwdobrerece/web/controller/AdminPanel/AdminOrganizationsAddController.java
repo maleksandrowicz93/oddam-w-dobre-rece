@@ -33,7 +33,7 @@ public class AdminOrganizationsAddController {
     public String saveAddOrganizationForm(@ModelAttribute OrganizationDTO organizationDTO) {
         Organization newOrganization = Converters.organizationDtoToOrganization(organizationDTO);
         organizationRepository.save(newOrganization);
-        return "redirect:/admin/admins";
+        return "redirect:/admin/organizations";
     }
 
 }
