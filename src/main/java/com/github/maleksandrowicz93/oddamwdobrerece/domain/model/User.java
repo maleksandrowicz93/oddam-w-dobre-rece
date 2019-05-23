@@ -29,6 +29,8 @@ public class User {
     private String lastName;
     @Column
     private Boolean isAdmin;
+    @Column
+    private Boolean isBlocked;
 
     @OneToMany
     private List<Gift> gifts = new ArrayList<>();
