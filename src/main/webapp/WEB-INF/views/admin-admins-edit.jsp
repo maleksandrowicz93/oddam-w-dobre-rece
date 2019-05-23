@@ -14,10 +14,10 @@
     <div class="slogan container container--90">
         <div class="slogan--item">
             <form:form method="post" modelAttribute="adminDTO">
-                First name: <form:input path="firstName"/><br/>
-                Last name: <form:input path="lastName"/><br/>
-                Email: <form:input path="username"/><br/>
-                Password: <form:password path="password"/><br/>
+                First name: <form:input placeholder="${adminDTO.firstName}" path="firstName"/><br/>
+                Last name: <form:input placeholder="${adminDTO.lastName}" path="lastName"/><br/>
+                Email: <form:input placeholder="${adminDTO.username}" path="username"/><br/>
+                Password: <form:password placeholder="${adminDTO.password}" path="password"/><br/>
                 <button>Zatwierdź</button>
             </form:form>
         </div>

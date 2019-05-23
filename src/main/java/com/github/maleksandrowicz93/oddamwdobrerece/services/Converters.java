@@ -15,4 +15,13 @@ public class Converters {
         return user;
     }
 
+    public static UserDTO userToUserDto(User user) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setFirstName(user.getFirstName());
+        userDTO.setLastName(user.getLastName());
+        userDTO.setUsername(user.getUsername());
+        userDTO.setPassword(user.getPassword());
+        return userDTO;
+    }
+
 }
