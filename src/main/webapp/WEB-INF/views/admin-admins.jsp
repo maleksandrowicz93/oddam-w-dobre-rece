@@ -32,7 +32,7 @@
                         <td>${admin.lastName}</td>
                         <td>${admin.username}</td>
                         <td><a href="admins/edit/${admin.id}" role="button">Edytuj</a>
-                            <a href="admins/remove/${admin.id}" role="button">Usuń</a></td>
+                            <a href="admins/delete/${admin.id}" role="button">Usuń</a></td>
                     </tr>
                 </c:forEach>
             </table>
