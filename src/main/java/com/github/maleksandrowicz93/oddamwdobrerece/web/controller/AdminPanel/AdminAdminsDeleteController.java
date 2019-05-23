@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/admin/admins")
+@RequestMapping("/admin/admins/delete")
 public class AdminAdminsDeleteController {
 
     private UserRepository userRepository;
@@ -16,14 +16,14 @@ public class AdminAdminsDeleteController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/delete/{id}")
+    @GetMapping("/{id}")
     public String displayDeleteAdminPage(@PathVariable("id") Long id, Model model) {
         User admin = userRepository.findFirstById(id);
         model.addAttribute("admin", admin);
         return "admin-admins-delete";
     }
 
-    @GetMapping("/delete/{id}/confirm")
+    @GetMapping("/{id}/confirm")
     public String confirmDeleteAdmin(@PathVariable("id") Long id) {
         userRepository.deleteById(id);
         return "redirect:/admin/admins";
