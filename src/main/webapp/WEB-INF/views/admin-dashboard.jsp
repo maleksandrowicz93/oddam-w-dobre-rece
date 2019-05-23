@@ -6,35 +6,10 @@
 <jsp:include page="head.jsp"/>
 
 <body>
-<header class="header--form-page">
-    <nav class="container container--70">
-        <ul class="nav--actions">
-            <li class="logged-user">
-                Witaj Agata
-                <ul class="dropdown">
-                    <li><a href="/profile">Profil</a></li>
-                    <li><a href="/settings">Ustawienia</a></li>
-                    <li><a href="/admins">Administratorzy</a></li>
-                    <li><a href="/users">Użytkownicy</a></li>
-                    <li><a href="/organizations">Organizajce</a></li>
-                    <li><a href="/gifts">Dary</a></li>
-                    <li><a href="/logout">Wyloguj</a></li>
-                </ul>
-            </li>
-        </ul>
 
-        <ul>
-            <li><a href="#" class="btn btn--without-border active">Start</a></li>
-            <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
-            <li><a href="#" class="btn btn--without-border">O nas</a></li>
-            <li>
-                <a href="#" class="btn btn--without-border"
-                >Fundacje i organizacje</a
-                >
-            </li>
-            <li><a href="#" class="btn btn--without-border">Kontakt</a></li>
-        </ul>
-    </nav>
+<header class="header--form-page">
+
+    <jsp:include page="admin-menu.jsp"/>
 
     <div class="slogan container container--90">
         <div class="slogan--item">
