@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin/admins")
+@RequestMapping("/admin/admins/add")
 public class AdminAdminsAddController {
 
     private UserRepository userRepository;
@@ -21,13 +21,13 @@ public class AdminAdminsAddController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/add")
+    @GetMapping("")
     public String displayAddAdminForm(Model model) {
         model.addAttribute("adminDTO", new UserDTO());
         return "admin-admins-add";
     }
 
-    @PostMapping("/add")
+    @PostMapping("")
     public String saveAddAdminForm(@ModelAttribute UserDTO adminDTO) {
         adminDTO.setIsAdmin(true);
         User newAdmin = Converters.userDtoToUser(adminDTO);

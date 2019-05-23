@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/admin/admins")
+@RequestMapping("/admin/admins/edit")
 public class AdminAdminsEditController {
 
     private UserRepository userRepository;
@@ -21,7 +21,7 @@ public class AdminAdminsEditController {
         this.userService = userService;
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/{id}")
     public String displayEditAdminForm(@PathVariable("id") Long id, Model model) {
         User admin = userRepository.findFirstById(id);
         UserDTO adminDTO = Converters.userToUserDto(admin);
@@ -29,7 +29,7 @@ public class AdminAdminsEditController {
         return "admin-admins-edit";
     }
 
-    @PostMapping("/edit/{id}")
+    @PostMapping("/{id}")
     public String saveEditAdminForm(@PathVariable ("id") Long id, @ModelAttribute UserDTO adminDTO) {
         User admin = userRepository.findFirstById(id);
         userService.updateUser(adminDTO, admin);
