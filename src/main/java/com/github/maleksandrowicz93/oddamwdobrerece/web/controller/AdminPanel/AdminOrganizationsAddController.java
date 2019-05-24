@@ -1,10 +1,8 @@
 package com.github.maleksandrowicz93.oddamwdobrerece.web.controller.AdminPanel;
 
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.Organization;
-import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.User;
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.OrganizationRepository;
 import com.github.maleksandrowicz93.oddamwdobrerece.dtos.OrganizationDTO;
-import com.github.maleksandrowicz93.oddamwdobrerece.dtos.UserDTO;
 import com.github.maleksandrowicz93.oddamwdobrerece.services.Converters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
