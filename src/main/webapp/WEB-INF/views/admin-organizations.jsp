@@ -29,8 +29,8 @@
                         <td>${organization.id}</td>
                         <td>${organization.name}</td>
                         <td>${organization.type}</td>
-                        <td><a href="admins/edit/${organization.id}" role="button">Edytuj</a>
-                            <a href="admins/delete/${organization.id}" role="button">Usuń</a></td>
+                        <td><a href="organizations/edit/${organization.id}" role="button">Edytuj</a>
+                            <a href="organizations/delete/${organization.id}" role="button">Usuń</a></td>
                     </tr>
                 </c:forEach>
             </table>
