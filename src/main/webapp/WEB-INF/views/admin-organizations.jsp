@@ -40,6 +40,6 @@
 </header>
 
 <jsp:include page="footer.jsp"/>
-<script src="../../static/js/app.js"></script>
+
 </body>
 </html>
