@@ -3,7 +3,7 @@ package com.github.maleksandrowicz93.oddamwdobrerece.services;
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.Organization;
 import com.github.maleksandrowicz93.oddamwdobrerece.dtos.OrganizationDTO;
 
-public class OrganiztaionConverter {
+public class OrganizationConverter {
 
     public static Organization organizationDtoToOrganization(OrganizationDTO organizationDTO) {
         Organization organization = new Organization();
@@ -27,7 +27,7 @@ public class OrganiztaionConverter {
         return organizationDTO;
     }
 
-    public void saveOrganiztaionChanges(OrganizationDTO organizationDTO, Organization organization) {
+    public static void saveOrganiztaionChanges(OrganizationDTO organizationDTO, Organization organization) {
         organization.setName(organizationDTO.getName());
         organization.setType(organizationDTO.getType());
         organization.setLocalization(organizationDTO.getLocalization());
