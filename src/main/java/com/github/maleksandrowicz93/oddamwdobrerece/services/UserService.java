@@ -26,14 +26,6 @@ public class UserService {
     }
 
     @Transactional
-    public void updateUser(UserDTO userDTO, User user) {
-        user.setFirstName(userDTO.getFirstName());
-        user.setLastName(userDTO.getLastName());
-        user.setUsername(userDTO.getUsername());
-        user.setPassword(userDTO.getPassword());
-    }
-
-    @Transactional
     public void registerUser(UserDTO newUser) {
         User user = UserConverter.userDtoToUser(newUser);
         user.setPassword(passwordEncoder.encode(user.getPassword()));

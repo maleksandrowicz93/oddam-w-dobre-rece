@@ -27,4 +27,13 @@ public class OrganiztaionConverter {
         return organizationDTO;
     }
 
+    public void saveOrganiztaionChanges(OrganizationDTO organizationDTO, Organization organization) {
+        organization.setName(organizationDTO.getName());
+        organization.setType(organizationDTO.getType());
+        organization.setLocalization(organizationDTO.getLocalization());
+        organization.setAddress(organizationDTO.getAddress());
+        organization.setDescription(organizationDTO.getDescription());
+        organization.setForWhom(organizationDTO.getForWhom());
+    }
+
 }

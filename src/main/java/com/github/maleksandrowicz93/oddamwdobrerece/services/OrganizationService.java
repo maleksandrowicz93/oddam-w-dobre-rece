@@ -17,16 +17,6 @@ public class OrganizationService {
         this.organizationRepository = organizationRepository;
     }
 
-    @Transactional
-    public void updateOrganization(OrganizationDTO organizationDTO, Organization organization) {
-        organization.setName(organizationDTO.getName());
-        organization.setType(organizationDTO.getType());
-        organization.setLocalization(organizationDTO.getLocalization());
-        organization.setAddress(organizationDTO.getAddress());
-        organization.setDescription(organizationDTO.getDescription());
-        organization.setForWhom(organizationDTO.getForWhom());
-    }
-
     public Organization findById(Long id) {
         return organizationRepository.findFirstById(id);
     }

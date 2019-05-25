@@ -26,4 +26,10 @@ public class UserConverter {
         return userDTO;
     }
 
+    public void saveUserChanges(UserDTO userDTO, User user) {
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        user.setUsername(userDTO.getUsername());
+        user.setPassword(userDTO.getPassword());
+    }
 }
