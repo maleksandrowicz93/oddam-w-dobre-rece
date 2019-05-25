@@ -2,6 +2,7 @@ package com.github.maleksandrowicz93.oddamwdobrerece.web.controller.AdminPanel;
 
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.User;
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.UserRepository;
+import com.github.maleksandrowicz93.oddamwdobrerece.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,10 +14,10 @@ import java.util.List;
 @RequestMapping("/admin/admins")
 public class AdminAdminsController {
 
-    private UserRepository userRepository;
+    private UserService userService;
 
-    public AdminAdminsController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public AdminAdminsController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
@@ -26,7 +27,7 @@ public class AdminAdminsController {
 
     @ModelAttribute("admins")
     public List<User> getAllAdmins() {
-        return userRepository.findAllByIsAdmin(true);
+        return userService.findAllAdmins();
     }
 
 }

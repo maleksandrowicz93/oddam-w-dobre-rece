@@ -1,7 +1,7 @@
 package com.github.maleksandrowicz93.oddamwdobrerece.web.controller.AdminPanel;
 
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.User;
-import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.UserRepository;
+import com.github.maleksandrowicz93.oddamwdobrerece.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,22 +10,23 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/admin/admins/delete")
 public class AdminAdminsDeleteController {
 
-    private UserRepository userRepository;
+    private UserService userService;
 
-    public AdminAdminsDeleteController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public AdminAdminsDeleteController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/{id}")
     public String displayDeleteAdminPage(@PathVariable("id") Long id, Model model) {
-        User admin = userRepository.findFirstById(id);
+        User admin = userService.findById(id);
         model.addAttribute("admin", admin);
         return "admin-admins-delete";
     }
 
     @GetMapping("/{id}/confirm")
     public String confirmDeleteAdmin(@PathVariable("id") Long id) {
-        userRepository.deleteById(id);
+        User user = userService.findById(id);
+        userService.deleteUser(user);
         return "redirect:/admin/admins";
     }
 
