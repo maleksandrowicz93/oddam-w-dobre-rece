@@ -1,12 +1,21 @@
 package com.github.maleksandrowicz93.oddamwdobrerece.services;
 
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.Organization;
+import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.OrganizationRepository;
 import com.github.maleksandrowicz93.oddamwdobrerece.dtos.OrganizationDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class OrganizationService {
+
+    private OrganizationRepository organizationRepository;
+
+    public OrganizationService(OrganizationRepository organizationRepository) {
+        this.organizationRepository = organizationRepository;
+    }
 
     @Transactional
     public void updateOrganization(OrganizationDTO organizationDTO, Organization organization) {
@@ -18,4 +27,19 @@ public class OrganizationService {
         organization.setForWhom(organizationDTO.getForWhom());
     }
 
+    public Organization findById(Long id) {
+        return organizationRepository.findFirstById(id);
+    }
+
+    public List<Organization> findAllOrganiztaions() {
+        return organizationRepository.findAll();
+    }
+
+    public void saveOrganization(Organization organization) {
+        organizationRepository.save(organization);
+    }
+
+    public void deleteOrganization(Organization organization) {
+        organizationRepository.deleteById(organization.getId());
+    }
 }

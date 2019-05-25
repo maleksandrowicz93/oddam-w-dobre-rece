@@ -5,12 +5,11 @@ import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.UserRepo
 import com.github.maleksandrowicz93.oddamwdobrerece.dtos.UserDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,11 +35,31 @@ public class UserService {
 
     @Transactional
     public void registerUser(UserDTO newUser) {
-        User user = Converters.userDtoToUser(newUser);
+        User user = UserConverter.userDtoToUser(newUser);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         logger.info("rejestracja użytkownika " + user);
         userRepository.save(user);
         logger.info("Zarejestrowany użytkownik: " + user);
+    }
+
+    public User findById(Long id) {
+        return userRepository.findFirstById(id);
+    }
+
+    public List<User> findAllAdmins() {
+        return userRepository.findAllByIsAdmin(true);
+    }
+
+    public List<User> findAllUsers() {
+        return userRepository.findAllByIsAdmin(false);
+    }
+
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
+
+    public void deleteUser(User user) {
+        userRepository.deleteById(user.getId());
     }
 
     public UserDTO findUser(String username) {
@@ -54,7 +73,7 @@ public class UserService {
             return null;
         }
         logger.debug("Znaleziono użytkownika dla nazwy '" + username + "' : " + user);
-        return Converters.userToUserDto(user);
+        return UserConverter.userToUserDto(user);
     }
 
 }
