@@ -27,7 +27,7 @@ public class AdminUsersController {
 
     @ModelAttribute("users")
     public List<User> getAllUsers() {
-        return userService.findAllAdmins();
+        return userService.findAllUsers();
     }
 
 }

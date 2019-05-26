@@ -29,7 +29,15 @@ public class AdminUsersBlockController {
     @GetMapping("/{id}/confirm")
     public String confirmBlockUser(@PathVariable("id") Long id) {
         User user = userService.findById(id);
-        user.setIsBlocked(true);
+        user.setRole("BLOCKED");
+        userService.saveUser(user);
+        return "redirect:/admin/users";
+    }
+
+    @GetMapping("/{id}/unblock")
+    public String unblockUser(@PathVariable("id") Long id) {
+        User user = userService.findById(id);
+        user.setRole("USER");
         userService.saveUser(user);
         return "redirect:/admin/users";
     }

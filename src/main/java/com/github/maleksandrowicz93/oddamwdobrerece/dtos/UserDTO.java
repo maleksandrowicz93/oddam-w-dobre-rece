@@ -12,6 +12,6 @@ public class UserDTO {
     private String confirmedPassword;
     private String firstName;
     private String lastName;
-    private Boolean isAdmin;
+    private String role;
 
 }
