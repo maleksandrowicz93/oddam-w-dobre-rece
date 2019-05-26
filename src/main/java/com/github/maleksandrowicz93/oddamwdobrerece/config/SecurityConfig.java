@@ -46,18 +46,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .dataSource(dataSource)
                 .passwordEncoder(passwordEncoder())
                 .usersByUsernameQuery("SELECT username, password, true FROM username = ?")
-                .authoritiesByUsernameQuery("SELECT username, 'ROLE_USER' FROM users WHERE username = ?");
+                .authoritiesByUsernameQuery("SELECT username, role FROM users WHERE username = ?");
     }
 
     @Override
     protected void configure (HttpSecurity http) throws Exception {
         http.authorizeRequests()
-//                .antMatchers("/app/**", "/admin/**").permitAll()
                 .antMatchers("/", "/index.html").permitAll()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/login").anonymous()
                 .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
-                .antMatchers("/app", "/app/**").hasRole("USER")
+                .antMatchers("/app", "/app/*").hasAnyRole("USER", "BLOCKED")
+                .antMatchers("/app/**").hasRole("USER")
                 .antMatchers("/static/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
