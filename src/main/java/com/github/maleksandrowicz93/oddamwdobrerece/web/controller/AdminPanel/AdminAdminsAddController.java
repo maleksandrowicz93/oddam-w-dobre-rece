@@ -29,7 +29,7 @@ public class AdminAdminsAddController {
 
     @PostMapping("")
     public String saveAddAdminForm(@ModelAttribute UserDTO adminDTO) {
-        adminDTO.setIsAdmin(true);
+        adminDTO.setRole("ADMIN");
         User newAdmin = UserConverter.userDtoToUser(adminDTO);
         userService.saveUser(newAdmin);
         return "redirect:/admin/admins";
