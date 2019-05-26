@@ -11,7 +11,7 @@ public class UserConverter {
         user.setLastName(userDTO.getLastName());
         user.setUsername(userDTO.getUsername());
         user.setPassword(userDTO.getPassword());
-        user.setIsAdmin(userDTO.getIsAdmin());
+        user.setRole(userDTO.getRole());
         return user;
     }
 

@@ -27,10 +27,8 @@ public class User {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
-    @Column
-    private Boolean isAdmin;
-    @Column
-    private Boolean isBlocked;
+    @Column(nullable = false)
+    private String role;
 
     @OneToMany
     private List<Gift> gifts = new ArrayList<>();

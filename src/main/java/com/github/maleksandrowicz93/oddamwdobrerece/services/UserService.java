@@ -25,25 +25,25 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Transactional
-    public void registerUser(UserDTO newUser) {
-        User user = UserConverter.userDtoToUser(newUser);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        logger.info("rejestracja użytkownika " + user);
-        userRepository.save(user);
-        logger.info("Zarejestrowany użytkownik: " + user);
-    }
+//    @Transactional
+//    public void registerUser(UserDTO newUser) {
+//        User user = UserConverter.userDtoToUser(newUser);
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        logger.info("rejestracja użytkownika " + user);
+//        userRepository.save(user);
+//        logger.info("Zarejestrowany użytkownik: " + user);
+//    }
 
     public User findById(Long id) {
         return userRepository.findFirstById(id);
     }
 
     public List<User> findAllAdmins() {
-        return userRepository.findAllByIsAdmin(true);
+        return userRepository.findAllByRole("ADMIN");
     }
 
     public List<User> findAllUsers() {
-        return userRepository.findAllByIsAdmin(false);
+        return userRepository.findAllByRoleNot("ADMIN");
     }
 
     public void saveUser(User user) {

@@ -8,7 +8,8 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    List<User> findAllByIsAdmin(Boolean isAdmin);
+    List<User> findAllByRole(String role);
+    List<User> findAllByRoleNot(String roleNot);
     User findFirstById(Long id);
     Optional<User> findByUsername(String username);
 
