@@ -25,15 +25,6 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-//    @Transactional
-//    public void registerUser(UserDTO newUser) {
-//        User user = UserConverter.userDtoToUser(newUser);
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-//        logger.info("rejestracja użytkownika " + user);
-//        userRepository.save(user);
-//        logger.info("Zarejestrowany użytkownik: " + user);
-//    }
-
     public User findById(Long id) {
         return userRepository.findFirstById(id);
     }
