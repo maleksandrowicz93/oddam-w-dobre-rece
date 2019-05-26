@@ -19,6 +19,7 @@
                     <th>Imię</th>
                     <th>Nazwisko</th>
                     <th>Email</th>
+                    <th>Zablokowany</th>
                     <th>Zarządzaj</th>
                 </tr>
                 <c:forEach var="user" items="${users}">
@@ -27,6 +28,14 @@
                         <td>${user.firstName}</td>
                         <td>${user.lastName}</td>
                         <td>${user.username}</td>
+                        <td><c:choose>
+                            <c:when test="${user.role == 'BLOCKED'}">
+                                <c:out value="TAK"/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:out value="NIE"/>
+                            </c:otherwise>
+                        </c:choose></td>
                         <td><a href="users/edit/${user.id}" role="button">Edytuj</a>
                             <a href="users/block/${user.id}" role="button">Blokuj</a>
                             <a href="users/delete/${user.id}" role="button">Usuń</a></td>

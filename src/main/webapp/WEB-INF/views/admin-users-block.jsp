@@ -15,7 +15,7 @@
     <div class="slogan container container--90">
         <div class="slogan--item">
             <c:choose>
-                <c:when test="${user.isBlocked}">
+                <c:when test="${user.role == 'BLOCKED'}">
                     Użytkownik został już zbalokowany.<br/>
                     Odblokować? <a href="${user.id}/unblock" role="button">Potwierdź</a>
                 </c:when>
