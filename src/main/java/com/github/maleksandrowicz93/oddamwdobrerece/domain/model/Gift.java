@@ -18,8 +18,17 @@ public class Gift {
     private Long id;
     @Column(unique = true, nullable = false)
     private String name;
+    private String state;
+    private String dateOfCollection;
+    @Column(nullable = false)
+    private String dateOfGiftRegistration;
+    private String type;
+    private Integer amountOfBags;
 
-    @ManyToOne()
+    @ManyToOne
     private User user;
+
+    @ManyToOne
+    private Organization organization;
 
 }
