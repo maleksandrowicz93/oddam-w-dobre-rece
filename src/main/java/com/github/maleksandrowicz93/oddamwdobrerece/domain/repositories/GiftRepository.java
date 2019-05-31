@@ -10,7 +10,7 @@ public interface GiftRepository extends JpaRepository<Gift, Long> {
 
     Gift findFirstById(Long id);
 
-    @Query("select g from Gift g order by g.state desc, g.dateOfCollection desc, g.dateOfGiftRegistration")
+    @Query("select g from Gift g order by g.status desc, g.dateOfCollection desc, g.dateOfGiftRegistration")
     List<Gift> readAllSortedGifts();
 
 }
