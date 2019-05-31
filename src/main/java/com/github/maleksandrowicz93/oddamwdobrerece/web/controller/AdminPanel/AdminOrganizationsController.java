@@ -1,7 +1,6 @@
 package com.github.maleksandrowicz93.oddamwdobrerece.web.controller.AdminPanel;
 
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.Organization;
-import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.OrganizationRepository;
 import com.github.maleksandrowicz93.oddamwdobrerece.services.OrganizationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +26,7 @@ public class AdminOrganizationsController {
 
     @ModelAttribute("organizations")
     public List<Organization> getAllOrganizations() {
-        return organizationService.findAllOrganiztaions();
+        return organizationService.findAllOrganizations();
     }
 
 }
