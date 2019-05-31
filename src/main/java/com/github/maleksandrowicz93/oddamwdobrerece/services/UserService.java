@@ -39,6 +39,10 @@ public class UserService {
         return userRepository.findFirstById(id);
     }
 
+    public User findByUsername(String name) {
+        return userRepository.findFirstByUsername(name);
+    }
+
     public List<User> findAllAdmins() {
         return userRepository.findAllByRole("ADMIN");
     }
@@ -68,5 +72,4 @@ public class UserService {
         logger.debug("Znaleziono użytkownika dla nazwy '" + username + "' : " + user);
         return UserConverter.userToUserDto(user);
     }
-
 }

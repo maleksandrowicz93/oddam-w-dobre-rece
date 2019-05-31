@@ -23,4 +23,9 @@ public class GiftService {
         return giftRepository.readAllSortedGifts();
     }
 
+    public void saveGift(Gift gift) {
+        giftRepository.save(gift);
+    }
+
+
 }
