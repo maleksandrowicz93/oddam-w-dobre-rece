@@ -18,7 +18,7 @@ public class Gift {
     private Long id;
     @Column(unique = true, nullable = false)
     private String name;
-    private String state;
+    private String status;
     private String dateOfCollection;
     @Column(nullable = false)
     private String dateOfGiftRegistration;
@@ -30,5 +30,8 @@ public class Gift {
 
     @ManyToOne
     private Organization organization;
+
+    @OneToOne
+    private ShippingInfo shippingInfo;
 
 }
