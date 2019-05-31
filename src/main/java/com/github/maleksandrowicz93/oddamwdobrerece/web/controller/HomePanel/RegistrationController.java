@@ -33,11 +33,13 @@ public class RegistrationController {
         if (result.hasErrors()) {
             return "registration-page";
         }
-        if (checkPasswordEquality(newUser)) {
+        if (!checkPasswordEquality(newUser)) {
             result.rejectValue("password", null, "Hasło i powtórzone hasło są niezgodne");
+            return "registration-page";
         }
         if (!checkIsUserNameAvailable(newUser)) {
             result.rejectValue("username", null, "Nazwa użytkownika jest już zajęta");
+            return "registration-page";
         }
         userService.registerUser(newUser);
         return "redirect:/";
