@@ -20,7 +20,7 @@ public class GiftService {
     }
 
     public List<Gift> findAllGifts() {
-        return giftRepository.findAll();
+        return giftRepository.readAllSortedGifts();
     }
 
 }
