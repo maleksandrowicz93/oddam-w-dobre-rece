@@ -23,7 +23,7 @@ public class AdminOrganizationsEditController {
     @GetMapping("/{id}")
     public String displayEditOrganizationForm(@PathVariable("id") Long id, Model model) {
         Organization organization = organizationService.findById(id);
-        OrganizationDTO organizationDTO = OrganizationConverter.organizationToOrganiztaionDTO(organization);
+        OrganizationDTO organizationDTO = OrganizationConverter.organizationToOrganizationDTO(organization);
         model.addAttribute("organizationDTO", organizationDTO);
         return "admin-organizations-edit";
     }
@@ -31,7 +31,7 @@ public class AdminOrganizationsEditController {
     @PostMapping("/{id}")
     public String saveEditOrganizationForm(@PathVariable ("id") Long id, @ModelAttribute OrganizationDTO organizationDTO) {
         Organization organization = organizationService.findById(id);
-        OrganizationConverter.saveOrganiztaionChanges(organizationDTO, organization);
+        OrganizationConverter.saveOrganizationChanges(organizationDTO, organization);
         organizationService.saveOrganization(organization);
         return "redirect:/admin/organizations";
     }
