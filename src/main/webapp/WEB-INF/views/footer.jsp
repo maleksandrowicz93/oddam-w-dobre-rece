@@ -23,4 +23,6 @@
         </div>
     </div>
 </footer>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css" />
 <script src="${pageContext.request.contextPath}/static/js/app.js"></script>
+
