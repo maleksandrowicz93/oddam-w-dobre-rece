@@ -9,20 +9,21 @@ import com.github.maleksandrowicz93.oddamwdobrerece.services.GiftConverter;
 import com.github.maleksandrowicz93.oddamwdobrerece.services.GiftService;
 import com.github.maleksandrowicz93.oddamwdobrerece.services.OrganizationService;
 import com.github.maleksandrowicz93.oddamwdobrerece.services.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping("/app")
 public class UserDashboardController {
+
+    private static final Logger logger = Logger.getLogger(UserDashboardController.class);
 
     private GiftService giftService;
     private OrganizationService organizationService;
@@ -35,27 +36,54 @@ public class UserDashboardController {
     }
 
     @GetMapping
-    public String displayAdminDashboard(Model model) {
-        GiftDTO newGift = new GiftDTO();
-        model.addAttribute("newGift", newGift);
-        return "user-dashboard";
+    public String displayAddGiftForm() {
+        logger.info("hello world");
+        System.out.println("hello world");
+        return "user-gifts-add";
     }
 
     @PostMapping
-    public void saveAddGiftForm(@ModelAttribute GiftDTO newGift, Principal principal) {
+    public String saveAddGiftForm(@RequestParam List<String> products, @RequestParam Integer bags,
+                                @RequestParam String localization, @RequestParam List<String> help,
+                                @RequestParam String organization_search, @RequestParam String organization,
+                                @RequestParam String address, @RequestParam String city, @RequestParam String postcode,
+                                @RequestParam String phone, @RequestParam String data,
+                                @RequestParam String time, @RequestParam String more_info, Principal principal) {
+
+//        logger.info("bags = " + bags + ", address = " + address);
+        System.out.println("bags = " + bags + ", address = " + address);
+
         User user = userService.findByUsername(principal.getName());
-        Gift gift = GiftConverter.giftDtoToGift(newGift);
-        ShippingInfo shippingInfo = GiftConverter.giftDtoToShippingInfo(newGift);
-        gift.setDateOfGiftRegistration(LocalDate.now().toString());
-        gift.setDateOfCollection(shippingInfo.getDate());
-        gift.setStatus("nieodebrane");
-        gift.setShippingInfo(shippingInfo);
-        gift.setUser(user);
+        GiftDTO newGiftDTO = GiftConverter.createNewGiftDtoBasedOnGiftForm(products, bags, localization,
+                help, organization, address, city, postcode, phone, data, time, more_info);
+        Gift newGift = GiftConverter.giftDtoToGift(newGiftDTO);
+        ShippingInfo shippingInfo = GiftConverter.giftDtoToShippingInfo(newGiftDTO);
+        Gift gift = GiftConverter.completeNewGiftData(newGift, shippingInfo, user);
+
+//        logger.info("user = " + user + ", localization = " + gift.getLocalization() + ", status = " + gift.getStatus());
+        System.out.println("user = " + user + ", localization = " + gift.getLocalization() + ", status = " + gift.getStatus());
+
         giftService.saveGift(gift);
+        return "redirect:/app/giftSummary";
+
+    }
+
+    @GetMapping("/giftSummary")
+    public String success() {
+        System.out.println("dziala");
+        return "dashboard";
     }
 
     @ModelAttribute("organizations")
     public List<Organization> findAllOrganizations() {
         return organizationService.findAllOrganizations();
+    }
+
+    @ModelAttribute("products")
+    public List<String> getProducts() {
+        List<String> products = new ArrayList<>();
+        products.add("1");
+        products.add("2");
+        return products;
     }
 }
