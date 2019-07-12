@@ -6,8 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import javax.sql.DataSource;
@@ -21,11 +20,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.dataSource = dataSource;
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
-
     @Bean("authenticationManager")
     @Override
     public AuthenticationManager authenticationManager() throws Exception {
@@ -34,6 +28,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
         return new MySimpleUrlAuthenticationSuccessHandler();
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     @Override
