@@ -24,6 +24,7 @@ public class Gift {
     private String dateOfGiftRegistration;
     private String type;
     private Integer amountOfBags;
+    private String localization;
 
     @ManyToOne
     private User user;
