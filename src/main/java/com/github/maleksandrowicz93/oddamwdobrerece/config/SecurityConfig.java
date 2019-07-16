@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure (HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/index.html").permitAll()
+                .antMatchers("/", "/index.html", "/h2-console/**").permitAll()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/login").anonymous()
                 .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
@@ -77,6 +77,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .key("keyRememberMe")
                 .rememberMeParameter("remember-me")
                 .tokenValiditySeconds(7*24*60*60);
+
+        http.headers().frameOptions().disable();
         super.configure(http);
     }
 
