@@ -32,7 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManager();
     }
 
-    @Bean public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler() {
         return new MySimpleUrlAuthenticationSuccessHandler();
     }
 
@@ -50,9 +51,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure (HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/", "/index.html").permitAll()
+                .antMatchers("/", "/index.html", "/h2-console/**").permitAll()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/login").anonymous()
                 .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
@@ -61,23 +62,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/static/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-            .formLogin()
+                .formLogin()
                 .loginPage("/login")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .successHandler(myAuthenticationSuccessHandler())
                 .failureUrl("/login?error")
                 .and()
-            .logout()
+                .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login?logout")
                 .and()
-            .csrf()
+                .csrf()
                 .disable()
-            .rememberMe()
+                .rememberMe()
                 .key("keyRememberMe")
                 .rememberMeParameter("remember-me")
-                .tokenValiditySeconds(7*24*60*60);
+                .tokenValiditySeconds(7 * 24 * 60 * 60);
+
+        http.headers().frameOptions().disable();
         super.configure(http);
     }
 
