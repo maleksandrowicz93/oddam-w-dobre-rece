@@ -151,7 +151,7 @@
                 <h3>Lokalizacja:</h3>
 
                 <div class="form-group form-group--dropdown">
-                    <select id="xd" name="localization">
+                    <select name="localization">
                         <option value="0">- wybierz -</option>
                         <option value="warsaw">Warszawa</option>
                         <option value="wroclaw">Wrocław</option>

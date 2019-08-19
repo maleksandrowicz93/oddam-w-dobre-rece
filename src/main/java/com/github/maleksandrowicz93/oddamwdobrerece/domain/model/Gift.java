@@ -3,6 +3,7 @@ package com.github.maleksandrowicz93.oddamwdobrerece.domain.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "gifts")
@@ -16,15 +17,18 @@ public class Gift {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true, nullable = false)
-    private String name;
+    @ElementCollection
+    @Column(name = "product")
+    private List<String> products;
+    private Integer amountOfBags;
+    private String localization;
+    @ElementCollection
+    @Column(name = "help")
+    private List<String> helpFor;
     private String status;
     private String dateOfCollection;
     @Column(nullable = false)
     private String dateOfGiftRegistration;
-    private String type;
-    private Integer amountOfBags;
-    private String localization;
 
     @ManyToOne
     private User user;
@@ -32,7 +36,6 @@ public class Gift {
     @ManyToOne
     private Organization organization;
 
-    @OneToOne
     private ShippingInfo shippingInfo;
 
 }

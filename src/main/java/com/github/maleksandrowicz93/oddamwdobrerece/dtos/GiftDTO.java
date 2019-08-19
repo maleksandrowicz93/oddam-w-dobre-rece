@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 public class GiftDTO {
 
-    private String name;
     private List<String> products;
     private Integer amountOfBags;
     private String localization;
