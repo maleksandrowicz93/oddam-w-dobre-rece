@@ -343,7 +343,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             function prepareNameFilter() {
                 var organizationNameInput = document.getElementById("organization-name");
-                organizationName = organizationNameInput.value
+                organizationName = organizationNameInput.value;
                 return organizationName;
             }
 
@@ -393,7 +393,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 timeInfo.innerText = time.value;
                 textInfo.innerText = text.value;
             }
-
         }
 
         /**
@@ -401,6 +400,9 @@ document.addEventListener("DOMContentLoaded", function () {
          *
          * TODO: validation, send data to server
          */
+
+
+
         submit(e) {
             e.preventDefault();
             this.currentStep++;
@@ -412,4 +414,61 @@ document.addEventListener("DOMContentLoaded", function () {
     if (form !== null) {
         new FormSteps(form);
     }
+});
+
+$(document).ready(function(){
+
+    function getParamMap() {
+        var dataForm = $('#add-gift-form').serialize();
+        var paramArray = dataForm.split('&');
+        var paramMap = new Map();
+        var i = 0;
+        for (i; i < paramArray.length; i++) {
+            var param = paramArray[i].split('=');
+            var key = param[0];
+            var value;
+            if (paramMap.has(key)) {
+                value = paramMap.get(key) + ", " + param[1];
+            } else {
+                value = param[1];
+            }
+            paramMap.set(key, value);
+        }
+        console.log(dataForm);
+        return paramMap;
+    }
+
+    function sendDataToServer(paramMap) {
+        $.post({
+            url: 'http://localhost:8090/app',
+            data: {
+                products: paramMap.get("products%5B%5D"),
+                bags: paramMap.get("bags"),
+                localization: paramMap.get("localization"),
+                help: paramMap.get("help%5B%5D"),
+                organizationSearch: paramMap.get("organization_search"),
+                organization: paramMap.get("organization"),
+                address: paramMap.get("address"),
+                city: paramMap.get("city"),
+                postcode: paramMap.get("postcode"),
+                phone: paramMap.get("phone"),
+                date: paramMap.get("date"),
+                time: paramMap.get("time"),
+                moreInfo: paramMap.get("more_info")
+            },
+            datatype: 'json'
+        }).done(function () {
+            console.log("done");
+        }).fail(function () {
+            console.log("fail")
+        }).always(function () {
+            console.log(paramMap)
+        });
+    }
+
+    $('.btn.submit.sixth-slide').on('click', function () {
+        var paramMap = getParamMap();
+        sendDataToServer(paramMap);
+    });
+
 });
