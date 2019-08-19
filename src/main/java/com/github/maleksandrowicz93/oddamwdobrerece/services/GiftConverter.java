@@ -9,19 +9,27 @@ import com.github.maleksandrowicz93.oddamwdobrerece.dtos.GiftDTO;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GiftConverter {
 
     private OrganizationService organizationService;
 
-    public GiftConverter() {
-    }
-
-    public static GiftDTO createNewGiftDtoBasedOnGiftForm(List<String> products, Integer bags, String localization,
-                                                          List<String> help, String organization, String address,
-                                                          String city, String postcode, String phone,
-                                                          String data, String time, String more_info) {
+    public static GiftDTO createNewGiftDtoBasedOnGiftForm(
+            List<String> products,
+            Integer bags,
+            String localization,
+            List<String> help,
+            Organization organization,
+            String address,
+            String city,
+            String postcode,
+            String phone,
+            String data,
+            String time,
+            String more_info)
+    {
         GiftDTO newGiftDTO = new GiftDTO();
         newGiftDTO.setProducts(products);
         newGiftDTO.setAmountOfBags(bags);
@@ -35,9 +43,9 @@ public class GiftConverter {
         newGiftDTO.setTime(time);
         newGiftDTO.setMoreInfo(more_info);
 
-        GiftConverter giftConverter = new GiftConverter();
-        Organization chosenOrganization = giftConverter.organizationService.findByName(organization);
-        newGiftDTO.setOrganization(chosenOrganization);
+//        GiftConverter giftConverter = new GiftConverter();
+//        Organization chosenOrganization = giftConverter.organizationService.findByName("Dla dzieci");
+        newGiftDTO.setOrganization(organization);
 
         return newGiftDTO;
     }
@@ -53,8 +61,10 @@ public class GiftConverter {
 
     public static Gift giftDtoToGift(GiftDTO giftDTO) {
         Gift gift = new Gift();
-        gift.setName(giftDTO.getName());
+        gift.setProducts(giftDTO.getProducts());
         gift.setAmountOfBags(giftDTO.getAmountOfBags());
+        gift.setLocalization(giftDTO.getLocalization());
+        gift.setHelpFor(giftDTO.getHelpFor());
         gift.setOrganization(giftDTO.getOrganization());
         return gift;
     }
