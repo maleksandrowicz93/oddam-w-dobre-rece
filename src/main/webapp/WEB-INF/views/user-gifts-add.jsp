@@ -69,7 +69,7 @@
     <div class="form--steps-container">
         <div class="form--steps-counter">Krok <span>1</span>/5</div>
 
-        <form method="post">
+        <form id="add-gift-form" method="post">
             <!-- STEP 1: class .active is switching steps -->
             <div data-step="1" id="products" class="active">
                 <h3>Zaznacz co chcesz oddać:</h3>
@@ -282,7 +282,7 @@
                     <div class="form-section--column">
                         <h4>Termin odbioru</h4>
                         <div class="form-group form-group--inline">
-                            <label> Data <input id="date" type="date" name="data"/> </label>
+                            <label> Data <input id="date" type="date" name="date"/> </label>
                         </div>
 
                         <div class="form-group form-group--inline">
@@ -351,7 +351,7 @@
 
                 <div class="form-group form-group--buttons">
                     <button type="button" class="btn prev-step sixth-slide">Wstecz</button>
-                    <button type="submit" class="btn sixth-slide">Potwierdzam</button>
+                    <button type="submit" class="btn submit sixth-slide">Potwierdzam</button>
                 </div>
             </div>
 
@@ -368,5 +368,6 @@
     <jsp:include page="footer.jsp"/>
 
 </body>
+
 </html>
 
