@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -66,8 +65,8 @@ public class UserDashboardController {
         user.setPassword("mmmm");
         user.setRole("USER");
         userService.saveUser(user);
-        Organization org = new Organization(1L, "Dla debili", "org", "Radom",
-                "sosnowiecka 69", "pomagamy debilom", "debile xd", new ArrayList<>());
+        Organization org = new Organization(1L, "org", "org", "Radom",
+                "sosnowiecka 69", "pomagamy", "wszyscy", new ArrayList<>());
         organizationService.saveOrganization(org);
 //        User user = userService.findByUsername(principal.getName());
         GiftDTO newGiftDTO = GiftConverter.createNewGiftDtoBasedOnGiftForm(productList, bags, localization,
@@ -128,18 +127,6 @@ public class UserDashboardController {
     public String success() {
         System.out.println("dziala");
         return "user-gifts-summary";
-    }
-
-    @GetMapping("/ogor")
-    public User displayOgor() {
-        User ogor = new User();
-        ogor.setFirstName("Marcel");
-        ogor.setLastName("Ogórek");
-        ogor.setRole("GEJ");
-        ogor.setUsername("Ogór");
-        ogor.setPassword("dupa007");
-        ogor.setId(1L);
-        return ogor;
     }
 
     @ModelAttribute("organizations")
