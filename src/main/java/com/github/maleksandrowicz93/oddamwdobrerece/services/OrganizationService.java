@@ -21,7 +21,11 @@ public class OrganizationService {
         return organizationRepository.findFirstById(id);
     }
 
-    public List<Organization> findAllOrganiztaions() {
+    public Organization findByName(String name) {
+        return organizationRepository.findFirstByName(name);
+    }
+
+    public List<Organization> findAllOrganizations() {
         return organizationRepository.findAll();
     }
 
