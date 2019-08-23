@@ -21,13 +21,13 @@ public class AdminAdminsAddController {
         this.userService = userService;
     }
 
-    @GetMapping("")
+    @GetMapping
     public String displayAddAdminForm(Model model) {
         model.addAttribute("adminDTO", new UserDTO());
         return "admin-admins-add";
     }
 
-    @PostMapping("")
+    @PostMapping
     public String saveAddAdminForm(@ModelAttribute UserDTO adminDTO) {
         adminDTO.setRole("ADMIN");
         User newAdmin = UserConverter.userDtoToUser(adminDTO);
