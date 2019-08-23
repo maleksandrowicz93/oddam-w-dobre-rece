@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 
 @Embeddable
-@Table(name = "shippingInformation")
 @Getter
 @Setter
 @ToString
