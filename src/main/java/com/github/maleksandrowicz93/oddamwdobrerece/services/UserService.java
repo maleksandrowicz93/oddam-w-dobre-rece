@@ -39,8 +39,8 @@ public class UserService {
         return userRepository.findFirstById(id);
     }
 
-    public User findByUsername(String name) {
-        return userRepository.findFirstByUsername(name);
+    public User findByUsername(String username) {
+        return userRepository.findFirstByUsername(username);
     }
 
     public List<User> findAllAdmins() {
