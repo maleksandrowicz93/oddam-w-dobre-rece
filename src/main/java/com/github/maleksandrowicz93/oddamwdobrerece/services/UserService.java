@@ -29,7 +29,7 @@ public class UserService {
     public void registerUser(UserDTO newUser) {
         User user = UserConverter.userDtoToUser(newUser);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("USER");
+        user.setRole("ROLE_USER");
         logger.info("rejestracja użytkownika " + user);
         userRepository.save(user);
         logger.info("Zarejestrowany użytkownik: " + user);
