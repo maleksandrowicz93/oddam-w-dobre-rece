@@ -447,7 +447,7 @@ $(document).ready(function(){
                 localization: paramMap.get("localization"),
                 help: paramMap.get("help%5B%5D"),
                 organizationSearch: paramMap.get("organization_search"),
-                organization: paramMap.get("organization"),
+                organizationId: paramMap.get("organization"),
                 address: paramMap.get("address"),
                 city: paramMap.get("city"),
                 postcode: paramMap.get("postcode"),
@@ -459,6 +459,7 @@ $(document).ready(function(){
             datatype: 'json'
         }).done(function () {
             console.log("done");
+            console.log(paramMap);
         }).fail(function () {
             console.log("fail")
         }).always(function () {

@@ -9,7 +9,6 @@ import java.util.List;
 @Table(name = "gifts")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class Gift {
@@ -38,4 +37,20 @@ public class Gift {
 
     private ShippingInfo shippingInfo;
 
+    @Override
+    public String toString() {
+        return "user: " + this.getUser().getUsername() + "\n" +
+                "products: " + this.getProducts() + "\n" +
+                "bags: " + this.getAmountOfBags() + "\n" +
+                "localization: " + this.getLocalization() + "\n" +
+                "help: " + this.getHelpFor() + "\n" +
+                "organization: " + this.getOrganization().getName() + "\n" +
+                "address: " + this.getShippingInfo().getAddress() + "\n" +
+                "city: " + this.getShippingInfo().getCity() + "\n" +
+                "post code: " + this.getShippingInfo().getPostcode() + "\n" +
+                "phone: " + this.getShippingInfo().getPhone() + "\n" +
+                "date: " + this.getShippingInfo().getDate() + "\n" +
+                "time: " + this.getShippingInfo().getTime() + "\n" +
+                "info: " + this.getShippingInfo().getMoreInfo();
+    }
 }
