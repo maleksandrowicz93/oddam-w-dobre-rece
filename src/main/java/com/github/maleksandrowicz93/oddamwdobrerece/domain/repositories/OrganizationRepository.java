@@ -7,4 +7,6 @@ public interface OrganizationRepository extends JpaRepository<Organization, Long
 
     Organization findFirstById(Long id);
 
+    Organization findFirstByName(String name);
+
 }

@@ -8,6 +8,7 @@
                 <li><a href="/app">Profil</a></li>
                 <li><a href="/app">Ustawienia</a></li>
                 <li><a href="/app/gifts">Moje zbiórki</a></li>
+                <li><a href="/app">Przekaż dar</a></li>
                 <li><a href="/logout">Wyloguj</a></li>
             </ul>
         </li>
