@@ -32,9 +32,7 @@ public class UserDashboardController {
     }
 
     @GetMapping
-    public String displayAddGiftForm() {
-        return "user-gifts-add";
-    }
+    public String displayAddGiftForm() { return "user-gifts-add"; }
 
     @PostMapping
     public String saveAddGiftForm(
@@ -43,7 +41,7 @@ public class UserDashboardController {
             @RequestParam String localization,
             @RequestParam(defaultValue = "") String help,
             @RequestParam String organizationSearch,
-            @RequestParam(defaultValue = "") String organization,
+            @RequestParam(defaultValue = "") Long organizationId,
             @RequestParam String address,
             @RequestParam String city,
             @RequestParam String postcode,
@@ -56,62 +54,23 @@ public class UserDashboardController {
 
         List<String> productList = getListFromString(products);
         List<String> helpList = getListFromString(help);
-
-        User user = new User();
-        user.setId(1L);
-        user.setUsername("m@m.m");
-        user.setFirstName("m");
-        user.setLastName("m");
-        user.setPassword("mmmm");
-        user.setRole("USER");
-        userService.saveUser(user);
-        Organization org = new Organization(1L, "org", "org", "Radom",
-                "sosnowiecka 69", "pomagamy", "wszyscy", new ArrayList<>());
-        organizationService.saveOrganization(org);
-//        User user = userService.findByUsername(principal.getName());
-        GiftDTO newGiftDTO = GiftConverter.createNewGiftDtoBasedOnGiftForm(productList, bags, localization,
-                helpList, org, address, city, postcode, phone, date, time, moreInfo);
-        Gift newGift = GiftConverter.giftDtoToGift(newGiftDTO);
-        ShippingInfo shippingInfo = GiftConverter.giftDtoToShippingInfo(newGiftDTO);
-        Gift gift = GiftConverter.completeNewGiftData(newGift, shippingInfo, user);
-
+        Gift gift = prepareGiftToSave(principal, productList, bags, localization, helpList, organizationId,
+                address, city, postcode, phone, date, time, moreInfo);
         giftService.saveGift(gift);
-
-        System.out.println(
-                "user: " + user.getUsername() + "\n" +
-                        "products: " + products + "\n" +
-                        "bags: " + bags + "\n" +
-                        "localization: " + localization + "\n" +
-                        "help: " + help + "\n" +
-                        "proposed organization: " + organizationSearch + "\n" +
-                        "chosen organization: " + organization + "\n" +
-                        "address: " + address + "\n" +
-                        "city: " + city + "\n" +
-                        "post code: " + postcode + "\n" +
-                        "phone: " + phone + "\n" +
-                        "date: " + date + "\n" +
-                        "time: " + time + "\n" +
-                        "info: " + moreInfo
-        );
-        System.out.println();
-        System.out.println(
-                "user: " + gift.getUser().getUsername() + "\n" +
-                        "products: " + gift.getProducts() + "\n" +
-                        "bags: " + gift.getAmountOfBags() + "\n" +
-                        "localization: " + gift.getLocalization() + "\n" +
-                        "help: " + gift.getHelpFor() + "\n" +
-                        "organization: " + gift.getOrganization().getName() + "\n" +
-                        "address: " + gift.getShippingInfo().getAddress() + "\n" +
-                        "city: " + gift.getShippingInfo().getCity() + "\n" +
-                        "post code: " + gift.getShippingInfo().getPostcode() + "\n" +
-                        "phone: " + gift.getShippingInfo().getPhone() + "\n" +
-                        "date: " + gift.getShippingInfo().getDate() + "\n" +
-                        "time: " + gift.getShippingInfo().getTime() + "\n" +
-                        "info: " + gift.getShippingInfo().getMoreInfo()
-        );
-
         return "redirect:/app/giftSummary";
 
+    }
+
+    private Gift prepareGiftToSave(Principal principal, List<String> productList, Integer bags, String localization,
+                                   List<String> helpList, Long organizationId, String address, String city,
+                                   String postcode, String phone, String date, String time, String moreInfo) {
+        User user = userService.findByUsername(principal.getName());
+        Organization organization = organizationService.findById(organizationId);
+        GiftDTO newGiftDTO = GiftConverter.createNewGiftDtoBasedOnGiftForm(productList, bags, localization,
+                helpList, organization, address, city, postcode, phone, date, time, moreInfo);
+        Gift newGift = GiftConverter.giftDtoToGift(newGiftDTO);
+        ShippingInfo shippingInfo = GiftConverter.giftDtoToShippingInfo(newGiftDTO);
+        return GiftConverter.completeNewGiftData(newGift, shippingInfo, user);
     }
 
     private List<String> getListFromString(String string) {
@@ -125,7 +84,6 @@ public class UserDashboardController {
 
     @GetMapping("/giftSummary")
     public String success() {
-        System.out.println("dziala");
         return "user-gifts-summary";
     }
 

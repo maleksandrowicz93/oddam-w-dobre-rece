@@ -2,12 +2,16 @@ package com.github.maleksandrowicz93.oddamwdobrerece.services;
 
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.Gift;
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.GiftRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class GiftService {
+
+    private static final Logger logger = LoggerFactory.getLogger(GiftService.class);
 
     private GiftRepository giftRepository;
 
@@ -25,6 +29,7 @@ public class GiftService {
 
     public void saveGift(Gift gift) {
         giftRepository.save(gift);
+        logger.info("Zarejestrowano dar: \n" + gift.toString());
     }
 
 
