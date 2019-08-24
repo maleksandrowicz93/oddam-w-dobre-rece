@@ -1,5 +1,6 @@
 package com.github.maleksandrowicz93.oddamwdobrerece.services;
 
+import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.Gift;
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.User;
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.UserRepository;
 import com.github.maleksandrowicz93.oddamwdobrerece.dtos.UserDTO;
@@ -59,7 +60,7 @@ public class UserService {
         userRepository.deleteById(user.getId());
     }
 
-    public UserDTO findUser(String username) {
+    public UserDTO findUserAndConvertToUserDTO(String username) {
         if (username == null) {
             throw new IllegalArgumentException("Nazwa użytkownika musi być podana");
         }
@@ -71,5 +72,12 @@ public class UserService {
         }
         logger.debug("Znaleziono użytkownika dla nazwy '" + username + "' : " + user);
         return UserConverter.userToUserDto(user);
+    }
+
+    public void assignGiftToUser(User user, Gift gift) {
+        List<Gift> gifts = user.getGifts();
+        gifts.add(gift);
+        user.setGifts(gifts);
+        userRepository.save(user);
     }
 }

@@ -52,17 +52,18 @@ public class UserDashboardController {
             @RequestParam String moreInfo,
             Principal principal
     ) {
+        User user = userService.findByUsername(principal.getName());
         List<String> productList = getListFromString(products);
         List<String> helpList = getListFromString(help);
-        Gift gift = prepareGiftToSave(principal, productList, bags, localization, helpList, organizationId,
+        Gift gift = prepareGiftToSave(user, productList, bags, localization, helpList, organizationId,
                 address, city, postcode, phone, date, time, moreInfo);
         giftService.saveGift(gift);
+        userService.assignGiftToUser(user, gift);
     }
 
-    private Gift prepareGiftToSave(Principal principal, List<String> productList, Integer bags, String localization,
+    private Gift prepareGiftToSave(User user, List<String> productList, Integer bags, String localization,
                                    List<String> helpList, Long organizationId, String address, String city,
                                    String postcode, String phone, String date, String time, String moreInfo) {
-        User user = userService.findByUsername(principal.getName());
         Organization organization = organizationService.findById(organizationId);
         GiftDTO newGiftDTO = GiftConverter.createNewGiftDtoBasedOnGiftForm(productList, bags, localization,
                 helpList, organization, address, city, postcode, phone, date, time, moreInfo);
@@ -80,21 +81,9 @@ public class UserDashboardController {
         return list;
     }
 
-    @GetMapping("/giftSummary")
-    public String success() {
-        return "user-gifts-summary";
-    }
-
     @ModelAttribute("organizations")
     public List<Organization> findAllOrganizations() {
         return organizationService.findAllOrganizations();
     }
 
-    @ModelAttribute("products")
-    public List<String> getProducts() {
-        List<String> products = new ArrayList<>();
-        products.add("1");
-        products.add("2");
-        return products;
-    }
 }
