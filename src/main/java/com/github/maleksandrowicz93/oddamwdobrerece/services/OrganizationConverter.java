@@ -16,7 +16,7 @@ public class OrganizationConverter {
         return organization;
     }
 
-    public static OrganizationDTO organizationToOrganiztaionDTO(Organization organization) {
+    public static OrganizationDTO organizationToOrganizationDTO(Organization organization) {
         OrganizationDTO organizationDTO = new OrganizationDTO();
         organizationDTO.setName(organization.getName());
         organizationDTO.setType(organization.getType());
@@ -27,7 +27,7 @@ public class OrganizationConverter {
         return organizationDTO;
     }
 
-    public static void saveOrganiztaionChanges(OrganizationDTO organizationDTO, Organization organization) {
+    public static void saveOrganizationChanges(OrganizationDTO organizationDTO, Organization organization) {
         organization.setName(organizationDTO.getName());
         organization.setType(organizationDTO.getType());
         organization.setLocalization(organizationDTO.getLocalization());

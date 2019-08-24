@@ -29,7 +29,7 @@ public class UserService {
     public void registerUser(UserDTO newUser) {
         User user = UserConverter.userDtoToUser(newUser);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole("USER");
+        user.setRole("ROLE_USER");
         logger.info("rejestracja użytkownika " + user);
         userRepository.save(user);
         logger.info("Zarejestrowany użytkownik: " + user);
@@ -37,6 +37,10 @@ public class UserService {
 
     public User findById(Long id) {
         return userRepository.findFirstById(id);
+    }
+
+    public User findByUsername(String username) {
+        return userRepository.findFirstByUsername(username);
     }
 
     public List<User> findAllAdmins() {
@@ -68,5 +72,4 @@ public class UserService {
         logger.debug("Znaleziono użytkownika dla nazwy '" + username + "' : " + user);
         return UserConverter.userToUserDto(user);
     }
-
 }

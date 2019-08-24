@@ -1,7 +1,6 @@
 package com.github.maleksandrowicz93.oddamwdobrerece.web.controller.UserPanel;
 
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.Gift;
-import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.GiftRepository;
 import com.github.maleksandrowicz93.oddamwdobrerece.services.GiftService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
