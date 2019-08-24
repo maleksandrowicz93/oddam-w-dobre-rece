@@ -15,7 +15,6 @@
         <div>
             <table>
                 <tr>
-                    <th>ID</th>
                     <th>Status</th>
                     <th>Data odebrania</th>
                     <th>Data utworzenia wpisu</th>
@@ -23,8 +22,7 @@
                 </tr>
                 <c:forEach var="gift" items="${gifts}">
                     <tr>
-                        <td>${gift.id}</td>
-                        <td>${gift.state}</td>
+                        <td>${gift.status}</td>
                         <td>${gift.dateOfCollection}</td>
                         <td>${gift.dateOfGiftRegistration}</td>
                         <td><a href="gifts/info/${gift.id}" role="button">Info</a></td>
