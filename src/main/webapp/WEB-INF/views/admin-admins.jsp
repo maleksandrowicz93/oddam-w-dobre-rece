@@ -14,7 +14,7 @@
     <div class="slogan container container--90">
         <div class="slogan--item">
             <h2>Dodaj admina</h2>
-            <a href="admins/add" role="button">+ Dodaj</a>
+            <a href="admins/add" class="btn" role="button">+ Dodaj</a>
         </div>
         <div>
             <table>
