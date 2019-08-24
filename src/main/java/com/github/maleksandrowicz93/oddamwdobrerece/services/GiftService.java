@@ -1,6 +1,7 @@
 package com.github.maleksandrowicz93.oddamwdobrerece.services;
 
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.Gift;
+import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.User;
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.GiftRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,8 +24,8 @@ public class GiftService {
         return giftRepository.findFirstById(id);
     }
 
-    public List<Gift> findAllGifts() {
-        return giftRepository.readAllSortedGifts();
+    public List<Gift> findSortedGiftsOfUser(User user) {
+        return giftRepository.readAllSortedGiftsOfGivenUser(user);
     }
 
     public void saveGift(Gift gift) {

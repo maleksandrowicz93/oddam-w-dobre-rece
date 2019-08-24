@@ -50,7 +50,7 @@ public class RegistrationController {
     }
 
     private boolean checkIsUserNameAvailable(UserDTO newUser) {
-        UserDTO user = userService.findUser(newUser.getUsername());
+        UserDTO user = userService.findUserAndConvertToUserDTO(newUser.getUsername());
         return user == null;
     }
 

@@ -1,8 +1,9 @@
 package com.github.maleksandrowicz93.oddamwdobrerece.web.controller.UserPanel;
 
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.Gift;
-import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.GiftRepository;
+import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.User;
 import com.github.maleksandrowicz93.oddamwdobrerece.services.GiftService;
+import com.github.maleksandrowicz93.oddamwdobrerece.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -17,15 +19,15 @@ import java.util.List;
 public class UserGiftsController {
 
     private GiftService giftService;
+    private UserService userService;
 
-    public UserGiftsController(GiftService giftService) {
+    public UserGiftsController(GiftService giftService, UserService userService) {
         this.giftService = giftService;
+        this.userService = userService;
     }
 
     @GetMapping
-    public String displayGiftsPage() {
-        return "user-gifts";
-    }
+    public String displayGiftsPage() { return "user-gifts"; }
 
     @GetMapping("/info/{id}")
     public String displayGiftInfoPage(@PathVariable("id") Long id, Model model) {
@@ -35,8 +37,9 @@ public class UserGiftsController {
     }
 
     @ModelAttribute("gifts")
-    public List<Gift> getAllGifts() {
-        return giftService.findAllGifts();
+    public List<Gift> getUserGifts(Principal principal) {
+        User user = userService.findByUsername(principal.getName());
+        return giftService.findSortedGiftsOfUser(user);
     }
 
 }

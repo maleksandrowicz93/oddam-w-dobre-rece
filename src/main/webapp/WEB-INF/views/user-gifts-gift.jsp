@@ -7,7 +7,7 @@
 
 <body>
 
-<header>
+<header class="header--form-page">
 
     <jsp:include page="user-menu.jsp"/>
 
@@ -15,36 +15,37 @@
         <div>
             <table>
                 <tr>
-                    <td>organizacja</td>
+                    <td>organizacja: </td>
                     <td>${gift.organization.name}</td>
                 </tr>
                 <tr>
-                    <td>stan</td>
-                    <td>${gift.state}</td>
+                    <td>stan: </td>
+                    <td>${gift.status}</td>
                 </tr>
                 <tr>
-                    <td>data utworzenia wpisu</td>
+                    <td>data utworzenia wpisu: </td>
                     <td>${gift.dateOfGiftRegistration}</td>
                 </tr>
                 <tr>
-                    <td>data przekazania daru</td>
+                    <td>data przekazania daru: </td>
                     <td>${gift.dateOfCollection}</td>
                 </tr>
                 <tr>
-                    <td>dobra</td>
-                    <td>${gift.type}</td>
+                    <td>dobra: </td>
+                    <td>${gift.products}</td>
                 </tr>
                 <tr>
-                    <td>ilość worków</td>
+                    <td>ilość worków: </td>
                     <td>${gift.amountOfBags}</td>
                 </tr>
             </table>
-            <br/>
-            <a href="/app/gifts" role="button">Wróć</a>
+            <br/><br/><a href="/app/gifts" class="btn" role="button">Wróć</a><br/><br/>
         </div>
     </div>
 
 </header>
+
+<jsp:include page="footer.jsp"/>
 
 </body>
 </html>
