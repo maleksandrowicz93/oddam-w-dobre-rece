@@ -350,6 +350,7 @@
                     Dziękujemy za przesłanie formularza Na maila prześlemy wszelkie
                     informacje o odbiorze.
                 </h2>
+                <br/><a href="/app/gifts" class="btn" role="button">Zarządzaj darami</a>
             </div>
         </form>
     </div>
