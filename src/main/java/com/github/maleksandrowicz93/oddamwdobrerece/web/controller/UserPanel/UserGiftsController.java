@@ -31,15 +31,25 @@ public class UserGiftsController {
 
     @GetMapping("/info/{id}")
     public String displayGiftInfoPage(@PathVariable("id") Long id, Model model) {
-        Gift gift = giftService.findById(id);
-        model.addAttribute("gift", gift);
+        getGiftByIdAndSendAsAttribute(id, model);
         return "user-gifts-gift";
+    }
+
+    @GetMapping("info/{id}/editStatus")
+    public String displayEditGiftStatusForm(@PathVariable("id") Long id, Model model) {
+        getGiftByIdAndSendAsAttribute(id, model);
+        return "user-gifts-gift-editStatus";
     }
 
     @ModelAttribute("gifts")
     public List<Gift> getUserGifts(Principal principal) {
         User user = userService.findByUsername(principal.getName());
         return giftService.findSortedGiftsOfUser(user);
+    }
+
+    private void getGiftByIdAndSendAsAttribute(Long id, Model model) {
+        Gift gift = giftService.findById(id);
+        model.addAttribute("gift", gift);
     }
 
 }
