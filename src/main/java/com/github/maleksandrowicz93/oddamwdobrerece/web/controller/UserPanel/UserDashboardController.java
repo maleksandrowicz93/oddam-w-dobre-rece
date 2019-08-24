@@ -35,7 +35,8 @@ public class UserDashboardController {
     public String displayAddGiftForm() { return "user-gifts-add"; }
 
     @PostMapping
-    public String saveAddGiftForm(
+    @ResponseBody
+    public void saveAddGiftForm(
             @RequestParam(defaultValue = "") String products,
             @RequestParam Integer bags,
             @RequestParam String localization,
@@ -51,14 +52,11 @@ public class UserDashboardController {
             @RequestParam String moreInfo,
             Principal principal
     ) {
-
         List<String> productList = getListFromString(products);
         List<String> helpList = getListFromString(help);
         Gift gift = prepareGiftToSave(principal, productList, bags, localization, helpList, organizationId,
                 address, city, postcode, phone, date, time, moreInfo);
         giftService.saveGift(gift);
-        return "redirect:/app/giftSummary";
-
     }
 
     private Gift prepareGiftToSave(Principal principal, List<String> productList, Integer bags, String localization,
