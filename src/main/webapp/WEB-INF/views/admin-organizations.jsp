@@ -13,8 +13,8 @@
 
     <div class="slogan container container--90">
         <div class="slogan--item">
-            <h2>Dodaj admina</h2>
-            <a href="organizations/add" role="button">+ Dodaj</a>
+            <h2>Dodaj organizację</h2>
+            <a href="organizations/add" class="btn" role="button">+ Dodaj</a>
         </div>
         <div>
             <table>
