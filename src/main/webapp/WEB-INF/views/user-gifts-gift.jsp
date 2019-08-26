@@ -42,7 +42,7 @@
                     <td>Zmień status:</td>
                     <c:choose>
                         <c:when test="${gift.status=='nieodebrane'}">
-                            <td><a href="info/${gift.id}/editStatus" class="btn" role="button">Edytuj</a></td>
+                            <td><a href="${gift.id}/editStatus" class="btn" role="button">Edytuj</a></td>
                         </c:when>
                         <c:otherwise>
                             <td>Zmieniono</td>
