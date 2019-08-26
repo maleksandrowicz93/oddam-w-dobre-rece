@@ -37,6 +37,11 @@ public class UserEditProfileController {
         return "redirect:/app/profile/success";
     }
 
+    @GetMapping("/success")
+    public String displaySuccessEditProfilePage() {
+        return "user-editProfile-success";
+    }
+
     private User getUser(Principal principal) {
         return userService.findByUsername(principal.getName());
     }
