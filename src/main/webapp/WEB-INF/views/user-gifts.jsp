@@ -25,7 +25,7 @@
                         <td>${gift.status}</td>
                         <td>${gift.dateOfCollection}</td>
                         <td>${gift.dateOfGiftRegistration}</td>
-                        <td><a href="gifts/info/${gift.id}" role="button">Info</a></td>
+                        <td><a href="gifts/${gift.id}" role="button">Info</a></td>
                     </tr>
                 </c:forEach>
             </table>

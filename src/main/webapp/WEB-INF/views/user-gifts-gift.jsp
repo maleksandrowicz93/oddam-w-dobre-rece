@@ -15,28 +15,39 @@
         <div>
             <table>
                 <tr>
-                    <td>organizacja: </td>
+                    <td>organizacja:</td>
                     <td>${gift.organization.name}</td>
                 </tr>
                 <tr>
-                    <td>stan: </td>
+                    <td>stan:</td>
                     <td>${gift.status}</td>
                 </tr>
                 <tr>
-                    <td>data utworzenia wpisu: </td>
+                    <td>data utworzenia wpisu:</td>
                     <td>${gift.dateOfGiftRegistration}</td>
                 </tr>
                 <tr>
-                    <td>data przekazania daru: </td>
+                    <td>data przekazania daru:</td>
                     <td>${gift.dateOfCollection}</td>
                 </tr>
                 <tr>
-                    <td>dobra: </td>
+                    <td>dobra:</td>
                     <td>${gift.products}</td>
                 </tr>
                 <tr>
-                    <td>ilość worków: </td>
+                    <td>ilość worków:</td>
                     <td>${gift.amountOfBags}</td>
+                </tr>
+                <tr>
+                    <td>Zmień status:</td>
+                    <c:choose>
+                        <c:when test="${gift.status=='nieodebrane'}">
+                            <td><a href="${gift.id}/editStatus" class="btn" role="button">Edytuj</a></td>
+                        </c:when>
+                        <c:otherwise>
+                            <td>Zmieniono</td>
+                        </c:otherwise>
+                    </c:choose>
                 </tr>
             </table>
             <br/><br/><a href="/app/gifts" class="btn" role="button">Wróć</a><br/><br/>

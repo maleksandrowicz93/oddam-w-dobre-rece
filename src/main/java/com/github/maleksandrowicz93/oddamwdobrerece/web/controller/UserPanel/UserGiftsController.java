@@ -2,14 +2,13 @@ package com.github.maleksandrowicz93.oddamwdobrerece.web.controller.UserPanel;
 
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.Gift;
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.User;
+import com.github.maleksandrowicz93.oddamwdobrerece.dtos.GiftDTO;
+import com.github.maleksandrowicz93.oddamwdobrerece.dtos.GiftDtoStatusContext;
 import com.github.maleksandrowicz93.oddamwdobrerece.services.GiftService;
 import com.github.maleksandrowicz93.oddamwdobrerece.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -29,11 +28,33 @@ public class UserGiftsController {
     @GetMapping
     public String displayGiftsPage() { return "user-gifts"; }
 
-    @GetMapping("/info/{id}")
+    @GetMapping("/{id}")
     public String displayGiftInfoPage(@PathVariable("id") Long id, Model model) {
         Gift gift = giftService.findById(id);
         model.addAttribute("gift", gift);
         return "user-gifts-gift";
+    }
+
+    @GetMapping("/{id}/editStatus")
+    public String displayEditGiftStatusForm(@PathVariable("id") Long id, Model model) {
+        if (giftService.findById(id).getStatus().equals("odebrane")) {
+            return "redirect:/app/gifts/" + id;
+        }
+        GiftDtoStatusContext giftDTO = new GiftDtoStatusContext();
+        model.addAttribute("giftDTO", giftDTO);
+        return "user-gifts-gift-editStatus";
+    }
+
+    @PostMapping("/{id}/editStatus")
+    public String saveEditGiftStatusForm(@PathVariable("id") Long id, @ModelAttribute GiftDtoStatusContext giftDTO) {
+        if (giftDTO.getStatus() == null) {
+            giftDTO.setStatus("nieodebrane");
+        }
+        if (giftDTO.getStatus().equals("odebrane")) {
+            Gift gift = giftService.findById(id);
+            giftService.changeGiftStatus(gift, giftDTO);
+        }
+        return "redirect:/app/gifts/" + id;
     }
 
     @ModelAttribute("gifts")
@@ -41,5 +62,4 @@ public class UserGiftsController {
         User user = userService.findByUsername(principal.getName());
         return giftService.findSortedGiftsOfUser(user);
     }
-
 }
