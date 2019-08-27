@@ -17,8 +17,8 @@
                 Email: <form:input placeholder="${userDTO.username}" path="username"/><br/>
                 Imię: <form:input placeholder="${userDTO.firstName}" path="firstName"/><br/>
                 Nazwisko: <form:input placeholder="${userDTO.lastName}" path="lastName"/><br/>
-                Hasło: <form:input placeholder="${userDTO.password}" path="password"/><br/>
-                Powtórz hasło: <form:input placeholder="${userDTO.password}" path="confirmedPassword"/><br/>
+                Hasło: <form:password placeholder="${userDTO.password}" path="password"/><br/>
+                Powtórz hasło: <form:password placeholder="${userDTO.password}" path="confirmedPassword"/><br/>
                 <button>Zatwierdź</button>
             </form:form>
         </div>

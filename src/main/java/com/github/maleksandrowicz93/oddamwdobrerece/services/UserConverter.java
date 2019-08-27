@@ -28,6 +28,8 @@ public class UserConverter {
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setUsername(userDTO.getUsername());
-        user.setPassword(userDTO.getPassword());
+        if (!userDTO.getPassword().equals("")) {
+            user.setPassword(userDTO.getPassword());
+        }
     }
 }
