@@ -19,7 +19,7 @@ public interface GiftRepository extends JpaRepository<Gift, Long> {
     @Query(value = "select SUM(amount_of_bags) from gifts", nativeQuery = true)
     Long sumAllBags();
 
-    @Query(value = "select COUNT(id) from gifts;", nativeQuery = true)
+    @Query(value = "select COUNT(id) from gifts", nativeQuery = true)
     Long countAllGifts();
 
 }

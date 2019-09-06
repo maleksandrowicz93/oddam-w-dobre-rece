@@ -9,7 +9,7 @@ public interface OrganizationRepository extends JpaRepository<Organization, Long
     Organization findFirstById(Long id);
     Organization findFirstByName(String name);
 
-    @Query(value = "select COUNT(id) from organiztaions;", nativeQuery = true)
+    @Query(value = "select COUNT(id) from organizations", nativeQuery = true)
     Long countAllOrganizations();
 
 }
