@@ -41,3 +41,5 @@ W zweryfikowane miejsca trzeba pojechać, a nie ma na to czasu lub nie ma jak ta
 - obsługa zapomnianych haseł,
 - walidacja poprawnego podania dwóch identycznych haseł,
 - walidacja obsługi administratorów (np. brak możliwości skasowania ostatniego istniejącego administratora).
+
+![Gift-Image](src/main/webapp/static/images/footer-bg.jpg)
