@@ -1,7 +1,7 @@
+# "Oddam w dobre ręce".
+
 ![Gift-Image](src/main/webapp/static/images/header-bg.jpg)
 
-
-# "Oddam w dobre ręce".
 ## Informacje o projekcie.
 
 > Cel projektu.
