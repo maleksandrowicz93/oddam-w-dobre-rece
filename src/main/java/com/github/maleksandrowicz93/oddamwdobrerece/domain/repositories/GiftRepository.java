@@ -16,4 +16,10 @@ public interface GiftRepository extends JpaRepository<Gift, Long> {
             "order by g.status asc, g.dateOfCollection desc, g.dateOfGiftRegistration desc, g.id desc ")
     List<Gift> readAllSortedGiftsOfGivenUser(@Param("user") User user);
 
+    @Query(value = "select SUM(amount_of_bags) from gifts", nativeQuery = true)
+    Long sumAllBags();
+
+    @Query(value = "select COUNT(id) from gifts;", nativeQuery = true)
+    Long countAllGifts();
+
 }
