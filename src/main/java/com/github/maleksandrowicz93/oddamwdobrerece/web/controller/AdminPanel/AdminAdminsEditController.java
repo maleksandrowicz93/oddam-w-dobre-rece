@@ -30,7 +30,8 @@ public class AdminAdminsEditController {
     @PostMapping("/{id}")
     public String saveEditAdminForm(@PathVariable ("id") Long id, @ModelAttribute UserDTO adminDTO) {
         User admin = userService.findById(id);
-        UserConverter.saveUserChanges(adminDTO, admin);
+        userService
+                .saveUserChanges(adminDTO, admin);
         userService.saveUser(admin);
         return "redirect:/admin/admins";
     }

@@ -89,4 +89,13 @@ public class UserService {
         UserDTO user = findUserAndConvertToUserDTO(newUser.getUsername());
         return user == null;
     }
+
+    public void saveUserChanges(UserDTO userDTO, User user) {
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        user.setUsername(userDTO.getUsername());
+        if (!userDTO.getPassword().equals("")) {
+            user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        }
+    }
 }

@@ -23,13 +23,4 @@ public class UserConverter {
         userDTO.setPassword(user.getPassword());
         return userDTO;
     }
-
-    public static void saveUserChanges(UserDTO userDTO, User user) {
-        user.setFirstName(userDTO.getFirstName());
-        user.setLastName(userDTO.getLastName());
-        user.setUsername(userDTO.getUsername());
-        if (!userDTO.getPassword().equals("")) {
-            user.setPassword(userDTO.getPassword());
-        }
-    }
 }
