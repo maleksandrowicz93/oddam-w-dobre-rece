@@ -1,4 +1,4 @@
-<img alt="Logo" src="src/main/webapp/static/images/header-bg">
+<img alt="Logo" src="static/images/header-bg.jpg">
 
 # "Oddam w dobre ręce".
 ## Informacje o projekcie.
