@@ -3,6 +3,7 @@ package com.github.maleksandrowicz93.oddamwdobrerece.domain.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "organizations")
@@ -28,5 +29,8 @@ public class Organization {
     private String description;
     @Column(nullable = false)
     private String forWhom;
+
+    @OneToMany
+    private List<Gift> receivedGifts;
 
 }

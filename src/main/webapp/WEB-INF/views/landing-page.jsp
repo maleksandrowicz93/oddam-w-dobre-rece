@@ -3,13 +3,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="pl">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Strona Główna</title>
-    <link rel="stylesheet" href="../../css/style.css" />
-</head>
+
+<jsp:include page="head.jsp"/>
+
 <body>
 
 <jsp:include page="header.jsp"/>
@@ -65,7 +61,7 @@
         </div>
     </div>
 
-    <a href="#" class="btn btn--large">Załóż konto</a>
+    <a href="/register" class="btn btn--large">Załóż konto</a>
 </section>
 
 <section class="about-us">
@@ -73,9 +69,9 @@
         <h2>O nas</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
             optio esse quisquam illo omnis.</p>
-        <img src="../../media/images/signature.svg" class="about-us--text-signature" alt="Signature"/>
+        <img src="../../static/images/signature.svg" class="about-us--text-signature" alt="Signature"/>
     </div>
-    <div class="about-us--image"><img src="../../media/images/about-us.jpg" alt="People in circle"/></div>
+    <div class="about-us--image"><img src="../../static/images/about-us.jpg" alt="People in circle"/></div>
 </section>
 
 <section class="help">
@@ -233,6 +229,5 @@
 
 <jsp:include page="footer.jsp"/>
 
-<script src="../../js/app.js"></script>
 </body>
 </html>

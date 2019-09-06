@@ -5,8 +5,8 @@
         <h2>Skontaktuj się z nami</h2>
         <h3>Formularz kontaktowy</h3>
         <form class="form--contact">
-            <div class="form-group form-group--50"><input type="text" name="name" placeholder="Imię" /></div>
-            <div class="form-group form-group--50"><input type="text" name="surname" placeholder="Nazwisko" /></div>
+            <div class="form-group form-group--50"><input type="text" name="name" placeholder="Imię"/></div>
+            <div class="form-group form-group--50"><input type="text" name="surname" placeholder="Nazwisko"/></div>
 
             <div class="form-group"><textarea name="message" placeholder="Wiadomość" rows="1"></textarea></div>
 
@@ -16,8 +16,14 @@
     <div class="bottom-line">
         <span class="bottom-line--copy">Copyright &copy; 2018</span>
         <div class="bottom-line--icons">
-            <a href="#" class="btn btn--small"><img src="../../media/images/icon-facebook.svg"/></a>
-            <a href="#" class="btn btn--small"><img src="../../media/images/icon-instagram.svg"/></a>
+            <a href="#" class="btn btn--small">
+                <img src="${pageContext.request.contextPath}/static/images/icon-facebook.svg"/></a>
+            <a href="#" class="btn btn--small">
+                <img src="${pageContext.request.contextPath}/static/images/icon-instagram.svg"/></a>
         </div>
     </div>
 </footer>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/style.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/app.js"></script>
+
