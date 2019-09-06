@@ -60,7 +60,7 @@ public class UserService {
         userRepository.deleteById(user.getId());
     }
 
-    public UserDTO findUserAndConvertToUserDTO(String username) {
+    private UserDTO findUserAndConvertToUserDTO(String username) {
         if (username == null) {
             throw new IllegalArgumentException("Nazwa użytkownika musi być podana");
         }
@@ -79,5 +79,23 @@ public class UserService {
         gifts.add(gift);
         user.setGifts(gifts);
         userRepository.save(user);
+    }
+
+    public boolean checkPasswordEquality(UserDTO newUser) {
+        return newUser.getPassword().equals(newUser.getConfirmedPassword());
+    }
+
+    public boolean checkIsUserNameAvailable(UserDTO newUser) {
+        UserDTO user = findUserAndConvertToUserDTO(newUser.getUsername());
+        return user == null;
+    }
+
+    public void saveUserChanges(UserDTO userDTO, User user) {
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        user.setUsername(userDTO.getUsername());
+        if (!userDTO.getPassword().equals("")) {
+            user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        }
     }
 }
