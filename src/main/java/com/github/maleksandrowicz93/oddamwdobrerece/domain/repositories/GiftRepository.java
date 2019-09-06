@@ -22,4 +22,10 @@ public interface GiftRepository extends JpaRepository<Gift, Long> {
     @Query(value = "select COUNT(id) from gifts", nativeQuery = true)
     Long countAllGifts();
 
+    @Query(value = "select product from gift_products where not product = '0' group by product", nativeQuery = true)
+    List<String> findProducts();
+
+    @Query(value = "select localization from gifts where not localization = '0' group by localization", nativeQuery = true)
+    List<String> findLocalizations();
+
 }

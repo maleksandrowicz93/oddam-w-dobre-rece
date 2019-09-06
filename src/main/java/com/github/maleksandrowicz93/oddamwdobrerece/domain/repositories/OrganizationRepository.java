@@ -4,6 +4,8 @@ import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.Organization;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 public interface OrganizationRepository extends JpaRepository<Organization, Long> {
 
     Organization findFirstById(Long id);
@@ -11,5 +13,8 @@ public interface OrganizationRepository extends JpaRepository<Organization, Long
 
     @Query(value = "select COUNT(id) from organizations", nativeQuery = true)
     Long countAllOrganizations();
+
+    @Query(value = "select type from organizations where not type = '0' group by type", nativeQuery = true)
+    List<String> findOrganizationTypes();
 
 }
