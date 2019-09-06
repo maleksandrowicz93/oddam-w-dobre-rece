@@ -29,11 +29,6 @@ public class UserEditProfileController {
     @GetMapping
     public String displayEditProfileForm(Principal principal, Model model) {
         User user = getUser(principal);
-        if (isUserWasUpdated) {
-            if (user == null) {
-                user = userService.findById(userID);
-            }
-        }
         UserDTO userDTO = UserConverter.userToUserDto(user);
         model.addAttribute("userDTO", userDTO);
         return "user-editProfile";
@@ -45,21 +40,23 @@ public class UserEditProfileController {
         if (result.hasErrors()) {
             return "redirect:/app/profile";
         }
-        if (!userDTO.getPassword().equals("") || !userDTO.getUsername().equals(user.getUsername())) {
+        if (!userDTO.getPassword().equals("")) {
             if (!userService.checkPasswordEquality(userDTO)) {
                 result.rejectValue("password", null, "Hasło i powtórzone hasło są niezgodne");
                 return "redirect:/app/profile";
             }
+        }
+        if (!user.getUsername().equals(userDTO.getUsername())) {
             if (!userService.checkIsUserNameAvailable(userDTO)) {
                 result.rejectValue("username", null, "Nazwa użytkownika jest już zajęta");
                 return "redirect:/app/profile";
             }
         }
         userService.saveUserChanges(userDTO, user);
-        userService.saveUser(user);
         if (!isUserWasUpdated) {
             userID = user.getId();
         }
+        userService.saveUser(user);
         isUserWasUpdated = true;
         return "redirect:/app/profile/success";
     }
@@ -70,7 +67,13 @@ public class UserEditProfileController {
     }
 
     private User getUser(Principal principal) {
-        return userService.findByUsername(principal.getName());
+        User user = userService.findByUsername(principal.getName());
+        if (isUserWasUpdated) {
+            if (user == null) {
+                user = userService.findById(userID);
+            }
+        }
+        return user;
     }
 
 }
