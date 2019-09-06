@@ -1,4 +1,4 @@
-<img alt="Logo" src="static/images/header-bg.jpg">
+<img alt="Logo" src="/home/mati/Pulpit/prework/oddam-w-dobre-rece/src/main/webapp/static/images/header-bg.jpg">
 
 # "Oddam w dobre ręce".
 ## Informacje o projekcie.
