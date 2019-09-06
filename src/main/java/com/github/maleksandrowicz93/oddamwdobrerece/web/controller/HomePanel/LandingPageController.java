@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.util.List;
+
 @Controller()
 public class LandingPageController {
 
@@ -37,5 +39,18 @@ public class LandingPageController {
         return giftRepository.countAllGifts();
     }
 
+    @ModelAttribute("organizationTypes")
+    public List<String> getAllOrganizationTypes() {
+        return organizationRepository.findOrganizationTypes();
+    }
 
+    @ModelAttribute("localizations")
+    public List<String> getAllLocalizations() {
+        return giftRepository.findLocalizations();
+    }
+
+    @ModelAttribute("products")
+    public List<String> getAllProducts() {
+        return giftRepository.findProducts();
+    }
 }
