@@ -15,19 +15,49 @@
         <div class="stats--item">
             <em>${bagsAmountOfAllOnes}</em>
             <h3>Oddanych worków</h3>
-            <p>Ubrania które nadają się do ponownego użycia; Ubrania do wyrzucenia, Zabawki, Książki, Inne.</p>
+            <p>Dary zawierają:
+                <c:forEach var="product" items="${products}" varStatus="iterating">
+                    <c:choose>
+                        <c:when test="${iterating.last}">
+                            ${product}.
+                        </c:when>
+                        <c:otherwise>
+                            ${product},
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach></p>
         </div>
 
         <div class="stats--item">
             <em>${organizationsAmountOfAllOnes}</em>
             <h3>Wspartych organizacji</h3>
-            <p>Fundacje, Organizacje pozarządowe, Lokalne Zbiórki.</p>
+            <p>Różnego typu:
+                <c:forEach var="type" items="${organizationTypes}" varStatus="iterating">
+                    <c:choose>
+                        <c:when test="${iterating.last}">
+                            ${type}.
+                        </c:when>
+                        <c:otherwise>
+                            ${type},
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach></p>
         </div>
 
         <div class="stats--item">
             <em>${gitsAmountOfAllOnes}</em>
             <h3>Zorganizowanych zbiórek</h3>
-            <p>Warszawa, Wrocław, Poznań, Gdańsk.</p>
+            <p>W następujących lokalizacjach:
+                <c:forEach var="localization" items="${localizations}" varStatus="iterating">
+                    <c:choose>
+                        <c:when test="${iterating.last}">
+                            ${localization}.
+                        </c:when>
+                        <c:otherwise>
+                            ${localization},
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach></p>
         </div>
     </div>
 </section>
