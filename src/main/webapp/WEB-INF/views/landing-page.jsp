@@ -94,8 +94,14 @@
 <section class="about-us">
     <div class="about-us--text">
         <h2>O nas</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
-            optio esse quisquam illo omnis.</p>
+        <p>Celem naszej organizacji jest stworzenie miejsca, w którym każdy będzie mógł oddać niepotrzebne rzeczy
+            zaufanym instytucjom.<br>
+            Wiele ludzi ma w domu rzeczy, których nie używa, ale są one w dobrym stanie i chce przekazać je osobom,
+            którym się mogą przydać - nie wie jednak jak w prosty sposób to zrobić.<br>
+            Jest wiele dostępnych rozwiązań, ale wiele z nich wymaga dodatkowego wysiłku lub nie budzą one zaufania. W
+            zweryfikowane miejsca trzeba pojechać, a nie ma na to czasu lub dojazd nie jest najprostszy. Natomiast kontenery
+            pod domem lub lokalne zbiórki są niezweryfikowane i nie wiadomo czy te rzeczy faktycznie trafią do
+            potrzebujących.</p>
         <img src="../../static/images/signature.svg" class="about-us--text-signature" alt="Signature"/>
     </div>
     <div class="about-us--image"><img src="../../static/images/about-us.jpg" alt="People in circle"/></div>
@@ -112,8 +118,8 @@
 
     <!-- SLIDE 1 -->
     <div class="help--slides active" data-id="1">
-        <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy. Możesz sprawdzić czym się
-            zajmują, komu pomagają i czego potrzebują.</p>
+        <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
+            Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>
 
         <ul class="help--slides-items">
             <li>
@@ -159,11 +165,8 @@
 
     <!-- SLIDE 2 -->
     <div class="help--slides" data-id="2">
-        <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic officiis mollitia dolor, neque aspernatur
-            accusamus debitis. Ducimus, officia. Quia, sunt illum! Non iste placeat ab ipsum alias
-            quos suscipit corporis!
-        </p>
+        <p>W naszej bazie znajdziesz listę zweryfikowanych Organizacji pozarządowych, z którymi współpracujemy.
+            Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>
         <ul class="help--slides-items">
             <li>
                 <div class="col">
@@ -221,8 +224,8 @@
 
     <!-- SLIDE 3 -->
     <div class="help--slides" data-id="3">
-        <p>Lorem ipsum dolor sit amet, his ocurreret persequeris ea, ad utinam laudem duo. Verterem adipisci partiendo
-            eos ne, ea his reque quaeque recteque, ne quo lobortis intellegam.</p>
+        <p>W naszej bazie znajdziesz listę zweryfikowanych lokalnych zbiórek, z którymi współpracujemy.
+            Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>
         <ul class="help--slides-items">
             <li>
                 <div class="col">
