@@ -55,4 +55,11 @@ public class LandingPageController {
 
     @ModelAttribute("foundations")
     public List<Organization> getAllFoundations() { return organizationRepository.findAllFoundations(); }
+
+    @ModelAttribute("privateOrganizations")
+    public List<Organization> getAllPrivateOrganizations() { return organizationRepository.findAllPrivateOrganztaions(); }
+
+    @ModelAttribute("collects")
+    public List<Organization> getAllLocalCollects() { return organizationRepository.findAllLocalCollects(); }
+
 }

@@ -148,49 +148,18 @@
         <p>W naszej bazie znajdziesz listę zweryfikowanych Organizacji pozarządowych, z którymi współpracujemy.
             Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>
         <ul class="help--slides-items">
-            <li>
-                <div class="col">
-                    <div class="title">Organizacja 1</div>
-                    <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                </div>
+            <c:forEach var="privateOrganization" items="${privateOrganizations}">
+                <li>
+                    <div class="col">
+                        <div class="title">Fundacja "${privateOrganization.name}"</div>
+                        <div class="subtitle">Cel i misja: ${privateOrganization.description}.</div>
+                    </div>
 
-                <div class="col">
-                    <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                </div>
-            </li>
-
-            <li>
-                <div class="col">
-                    <div class="title">Organizacja 2</div>
-                    <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                </div>
-
-                <div class="col">
-                    <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                </div>
-            </li>
-
-            <li>
-                <div class="col">
-                    <div class="title">Organizacja 3</div>
-                    <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                </div>
-
-                <div class="col">
-                    <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                </div>
-            </li>
-
-            <li>
-                <div class="col">
-                    <div class="title">Organizacja 4</div>
-                    <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                </div>
-
-                <div class="col">
-                    <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                </div>
-            </li>
+                    <div class="col">
+                        <div class="text">${privateOrganization.needs}</div>
+                    </div>
+                </li>
+            </c:forEach>
         </ul>
 
         <ul class="help--slides-pagination">
@@ -207,27 +176,18 @@
         <p>W naszej bazie znajdziesz listę zweryfikowanych lokalnych zbiórek, z którymi współpracujemy.
             Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>
         <ul class="help--slides-items">
-            <li>
-                <div class="col">
-                    <div class="title">Lokalna zbiórka 1</div>
-                    <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                </div>
+            <c:forEach var="collect" items="${collects}">
+                <li>
+                    <div class="col">
+                        <div class="title">Fundacja "${collect.name}"</div>
+                        <div class="subtitle">Cel i misja: ${collect.description}.</div>
+                    </div>
 
-                <div class="col">
-                    <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                </div>
-            </li>
-
-            <li>
-                <div class="col">
-                    <div class="title">Lokalna zbiórka 2</div>
-                    <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                </div>
-
-                <div class="col">
-                    <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                </div>
-            </li>
+                    <div class="col">
+                        <div class="text">${collect.needs}</div>
+                    </div>
+                </li>
+            </c:forEach>
         </ul>
 
         <ul class="help--slides-pagination">

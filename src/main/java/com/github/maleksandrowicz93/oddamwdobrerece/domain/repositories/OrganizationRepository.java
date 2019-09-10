@@ -16,4 +16,10 @@ public interface OrganizationRepository extends JpaRepository<Organization, Long
 
     @Query(value = "select o from Organization o where type='fundacja'")
     List<Organization> findAllFoundations();
+
+    @Query(value = "select o from Organization o where type='oranizacja'")
+    List<Organization> findAllPrivateOrganztaions();
+
+    @Query(value = "select o from Organization o where type='zbiórka'")
+    List<Organization> findAllLocalCollects();
 }
