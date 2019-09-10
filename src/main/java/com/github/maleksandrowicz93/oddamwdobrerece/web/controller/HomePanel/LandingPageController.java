@@ -39,6 +39,9 @@ public class LandingPageController {
         return giftRepository.countAllGifts();
     }
 
+    @ModelAttribute("helpFor")
+    public List<String> getWhoGetHelp() { return giftRepository.findAllForWhoHelp(); }
+
     @ModelAttribute("organizationTypes")
     public List<String> getAllOrganizationTypes() {
         return organizationRepository.findOrganizationTypes();

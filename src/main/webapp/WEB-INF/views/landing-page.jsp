@@ -31,14 +31,14 @@
         <div class="stats--item">
             <em>${organizationsAmountOfAllOnes}</em>
             <h3>Wspartych organizacji</h3>
-            <p>Różnego typu:
-                <c:forEach var="type" items="${organizationTypes}" varStatus="iterating">
+            <p>Pomagającym:
+                <c:forEach var="typeOfHelp" items="${helpFor}" varStatus="iterating">
                     <c:choose>
                         <c:when test="${iterating.last}">
-                            ${type}.
+                            ${typeOfHelp}.
                         </c:when>
                         <c:otherwise>
-                            ${type},
+                            ${typeOfHelp},
                         </c:otherwise>
                     </c:choose>
                 </c:forEach></p>
