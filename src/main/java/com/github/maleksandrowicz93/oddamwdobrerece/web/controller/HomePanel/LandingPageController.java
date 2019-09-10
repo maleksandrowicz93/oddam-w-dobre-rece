@@ -1,5 +1,6 @@
 package com.github.maleksandrowicz93.oddamwdobrerece.web.controller.HomePanel;
 
+import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.Organization;
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.GiftRepository;
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.OrganizationRepository;
 import org.springframework.stereotype.Controller;
@@ -42,11 +43,6 @@ public class LandingPageController {
     @ModelAttribute("helpFor")
     public List<String> getWhoGetHelp() { return giftRepository.findAllForWhoHelp(); }
 
-    @ModelAttribute("organizationTypes")
-    public List<String> getAllOrganizationTypes() {
-        return organizationRepository.findOrganizationTypes();
-    }
-
     @ModelAttribute("localizations")
     public List<String> getAllLocalizations() {
         return giftRepository.findLocalizations();
@@ -56,4 +52,7 @@ public class LandingPageController {
     public List<String> getAllProducts() {
         return giftRepository.findProducts();
     }
+
+    @ModelAttribute("foundations")
+    public List<Organization> getAllFoundations() { return organizationRepository.findAllFoundations(); }
 }
