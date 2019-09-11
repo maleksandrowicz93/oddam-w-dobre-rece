@@ -15,5 +15,6 @@ public class OrganizationDTO {
     private String address;
     private String description;
     private String forWhom;
+    private String needs;
 
 }

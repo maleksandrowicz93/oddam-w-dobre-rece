@@ -19,6 +19,7 @@
                 Localization: <form:input placeholder="${organizationDTO.localization}" path="localization"/><br/>
                 Address: <form:input placeholder="${organizationDTO.address}" path="address"/><br/>
                 For whom: <form:input placeholder="${organizationDTO.forWhom}" path="forWhom"/><br/>
+                Needs: <form:input placeholder="${organizationDTO.needs}" path="needs"/><br/>
                 Description: <form:textarea placeholder="${organizationDTO.description}" path="description"/><br/>
                 <button>Zatwierdź</button>
             </form:form>

@@ -13,6 +13,7 @@ public class OrganizationConverter {
         organization.setAddress(organizationDTO.getAddress());
         organization.setDescription(organizationDTO.getDescription());
         organization.setForWhom(organizationDTO.getForWhom());
+        organization.setNeeds(organizationDTO.getNeeds());
         return organization;
     }
 
@@ -24,6 +25,7 @@ public class OrganizationConverter {
         organizationDTO.setAddress(organization.getAddress());
         organizationDTO.setDescription(organization.getDescription());
         organizationDTO.setForWhom(organization.getForWhom());
+        organizationDTO.setNeeds(organization.getNeeds());
         return organizationDTO;
     }
 
@@ -34,6 +36,7 @@ public class OrganizationConverter {
         organization.setAddress(organizationDTO.getAddress());
         organization.setDescription(organizationDTO.getDescription());
         organization.setForWhom(organizationDTO.getForWhom());
+        organization.setNeeds(organizationDTO.getNeeds());
     }
 
 }
