@@ -10,7 +10,7 @@
 
 <jsp:include page="header.jsp"/>
 
-<section class="stats">
+<section class="stats" id="stats">
     <div class="container container--85">
         <div class="stats--item">
             <em>${bagsAmountOfAllOnes}</em>
@@ -91,7 +91,7 @@
     <a href="/register" class="btn btn--large">Załóż konto</a>
 </section>
 
-<section class="about-us">
+<section class="about-us" id="about">
     <div class="about-us--text">
         <h2>O nas</h2>
         <p>Celem naszej organizacji jest stworzenie miejsca, w którym każdy będzie mógł oddać niepotrzebne rzeczy
@@ -107,7 +107,7 @@
     <div class="about-us--image"><img src="../../static/images/about-us.jpg" alt="People in circle"/></div>
 </section>
 
-<section class="help">
+<section class="help" id="help">
     <h2>Komu pomagamy?</h2>
 
     <ul class="help--buttons">
