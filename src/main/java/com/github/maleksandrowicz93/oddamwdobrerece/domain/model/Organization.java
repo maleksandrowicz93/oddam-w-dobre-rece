@@ -29,6 +29,8 @@ public class Organization {
     private String description;
     @Column(nullable = false)
     private String forWhom;
+    @Column(nullable = false)
+    private String needs;
 
     @OneToMany
     private List<Gift> receivedGifts;

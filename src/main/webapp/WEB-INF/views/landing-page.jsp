@@ -10,27 +10,54 @@
 
 <jsp:include page="header.jsp"/>
 
-<section class="stats">
+<section class="stats" id="stats">
     <div class="container container--85">
         <div class="stats--item">
-            <em>10</em>
+            <em>${bagsAmountOfAllOnes}</em>
             <h3>Oddanych worków</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius est beatae, quod accusamus illum
-                tempora!</p>
+            <p>Dary zawierają:
+                <c:forEach var="product" items="${products}" varStatus="iterating">
+                    <c:choose>
+                        <c:when test="${iterating.last}">
+                            ${product}.
+                        </c:when>
+                        <c:otherwise>
+                            ${product},
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach></p>
         </div>
 
         <div class="stats--item">
-            <em>5</em>
+            <em>${organizationsAmountOfAllOnes}</em>
             <h3>Wspartych organizacji</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laboriosam magnam, sint nihil cupiditate quas
-                quam.</p>
+            <p>Pomagającym:
+                <c:forEach var="typeOfHelp" items="${helpFor}" varStatus="iterating">
+                    <c:choose>
+                        <c:when test="${iterating.last}">
+                            ${typeOfHelp}.
+                        </c:when>
+                        <c:otherwise>
+                            ${typeOfHelp},
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach></p>
         </div>
 
         <div class="stats--item">
-            <em>7</em>
+            <em>${gitsAmountOfAllOnes}</em>
             <h3>Zorganizowanych zbiórek</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos dolores commodi error. Natus, officiis
-                vitae?</p>
+            <p>W następujących lokalizacjach:
+                <c:forEach var="localization" items="${localizations}" varStatus="iterating">
+                    <c:choose>
+                        <c:when test="${iterating.last}">
+                            ${localization}.
+                        </c:when>
+                        <c:otherwise>
+                            ${localization},
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach></p>
         </div>
     </div>
 </section>
@@ -64,17 +91,23 @@
     <a href="/register" class="btn btn--large">Załóż konto</a>
 </section>
 
-<section class="about-us">
+<section class="about-us" id="about">
     <div class="about-us--text">
         <h2>O nas</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
-            optio esse quisquam illo omnis.</p>
+        <p>Celem naszej organizacji jest stworzenie miejsca, w którym każdy będzie mógł oddać niepotrzebne rzeczy
+            zaufanym instytucjom.<br>
+            Wiele ludzi ma w domu rzeczy, których nie używa, ale są one w dobrym stanie i chce przekazać je osobom,
+            którym się mogą przydać - nie wie jednak jak w prosty sposób to zrobić.<br>
+            Jest wiele dostępnych rozwiązań, ale wiele z nich wymaga dodatkowego wysiłku lub nie budzą one zaufania. W
+            zweryfikowane miejsca trzeba pojechać, a nie ma na to czasu lub dojazd nie jest najprostszy. Natomiast kontenery
+            pod domem lub lokalne zbiórki są niezweryfikowane i nie wiadomo czy te rzeczy faktycznie trafią do
+            potrzebujących.</p>
         <img src="../../static/images/signature.svg" class="about-us--text-signature" alt="Signature"/>
     </div>
     <div class="about-us--image"><img src="../../static/images/about-us.jpg" alt="People in circle"/></div>
 </section>
 
-<section class="help">
+<section class="help" id="help">
     <h2>Komu pomagamy?</h2>
 
     <ul class="help--buttons">
@@ -85,42 +118,22 @@
 
     <!-- SLIDE 1 -->
     <div class="help--slides active" data-id="1">
-        <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy. Możesz sprawdzić czym się
-            zajmują, komu pomagają i czego potrzebują.</p>
+        <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
+            Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>
 
         <ul class="help--slides-items">
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja "Dbam o Zdrowie"</div>
-                    <div class="subtitle">Cel i misja: Pomoc dzieciom z ubogich rodzin.</div>
-                </div>
+            <c:forEach var="foundation" items="${foundations}">
+                <li>
+                    <div class="col">
+                        <div class="title">Fundacja "${foundation.name}"</div>
+                        <div class="subtitle">Cel i misja: ${foundation.description}.</div>
+                    </div>
 
-                <div class="col">
-                    <div class="text">ubrania, jedzenie, sprzęt AGD, meble, zabawki</div>
-                </div>
-            </li>
-
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja “Dla dzieci"</div>
-                    <div class="subtitle">Cel i misja: Pomoc osobom znajdującym się w trudnej sytuacji życiowej.</div>
-                </div>
-
-                <div class="col">
-                    <div class="text">ubrania, meble, zabawki</div>
-                </div>
-            </li>
-
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja “Bez domu”</div>
-                    <div class="subtitle">Cel i misja: Pomoc dla osób nie posiadających miejsca zamieszkania</div>
-                </div>
-
-                <div class="col">
-                    <div class="text">ubrania, jedzenie, ciepłe koce</div>
-                </div>
-            </li>
+                    <div class="col">
+                        <div class="text">${foundation.needs}</div>
+                    </div>
+                </li>
+            </c:forEach>
         </ul>
 
         <ul class="help--slides-pagination">
@@ -132,55 +145,21 @@
 
     <!-- SLIDE 2 -->
     <div class="help--slides" data-id="2">
-        <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic officiis mollitia dolor, neque aspernatur
-            accusamus debitis. Ducimus, officia. Quia, sunt illum! Non iste placeat ab ipsum alias
-            quos suscipit corporis!
-        </p>
+        <p>W naszej bazie znajdziesz listę zweryfikowanych Organizacji pozarządowych, z którymi współpracujemy.
+            Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>
         <ul class="help--slides-items">
-            <li>
-                <div class="col">
-                    <div class="title">Organizacja 1</div>
-                    <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                </div>
+            <c:forEach var="privateOrganization" items="${privateOrganizations}">
+                <li>
+                    <div class="col">
+                        <div class="title">Fundacja "${privateOrganization.name}"</div>
+                        <div class="subtitle">Cel i misja: ${privateOrganization.description}.</div>
+                    </div>
 
-                <div class="col">
-                    <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                </div>
-            </li>
-
-            <li>
-                <div class="col">
-                    <div class="title">Organizacja 2</div>
-                    <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                </div>
-
-                <div class="col">
-                    <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                </div>
-            </li>
-
-            <li>
-                <div class="col">
-                    <div class="title">Organizacja 3</div>
-                    <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                </div>
-
-                <div class="col">
-                    <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                </div>
-            </li>
-
-            <li>
-                <div class="col">
-                    <div class="title">Organizacja 4</div>
-                    <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                </div>
-
-                <div class="col">
-                    <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                </div>
-            </li>
+                    <div class="col">
+                        <div class="text">${privateOrganization.needs}</div>
+                    </div>
+                </li>
+            </c:forEach>
         </ul>
 
         <ul class="help--slides-pagination">
@@ -194,30 +173,21 @@
 
     <!-- SLIDE 3 -->
     <div class="help--slides" data-id="3">
-        <p>Lorem ipsum dolor sit amet, his ocurreret persequeris ea, ad utinam laudem duo. Verterem adipisci partiendo
-            eos ne, ea his reque quaeque recteque, ne quo lobortis intellegam.</p>
+        <p>W naszej bazie znajdziesz listę zweryfikowanych lokalnych zbiórek, z którymi współpracujemy.
+            Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>
         <ul class="help--slides-items">
-            <li>
-                <div class="col">
-                    <div class="title">Lokalna zbiórka 1</div>
-                    <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                </div>
+            <c:forEach var="collect" items="${collects}">
+                <li>
+                    <div class="col">
+                        <div class="title">Fundacja "${collect.name}"</div>
+                        <div class="subtitle">Cel i misja: ${collect.description}.</div>
+                    </div>
 
-                <div class="col">
-                    <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                </div>
-            </li>
-
-            <li>
-                <div class="col">
-                    <div class="title">Lokalna zbiórka 2</div>
-                    <div class="subtitle">Lorem ipsum dolor sit amet consectetur.</div>
-                </div>
-
-                <div class="col">
-                    <div class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                </div>
-            </li>
+                    <div class="col">
+                        <div class="text">${collect.needs}</div>
+                    </div>
+                </li>
+            </c:forEach>
         </ul>
 
         <ul class="help--slides-pagination">
