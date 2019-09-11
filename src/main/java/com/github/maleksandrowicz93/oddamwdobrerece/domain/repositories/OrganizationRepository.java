@@ -14,6 +14,15 @@ public interface OrganizationRepository extends JpaRepository<Organization, Long
     @Query(value = "select COUNT(id) from organizations", nativeQuery = true)
     Long countAllOrganizations();
 
+    @Query(value = "select COUNT(id) from organizations where type='fundacja'", nativeQuery = true)
+    Long countAllFoundations();
+
+    @Query(value = "select COUNT(id) from organizations where type='organizacja'", nativeQuery = true)
+    Long countAllPrivateOrganizations();
+
+    @Query(value = "select COUNT(id) from organizations where type='zbiorka'", nativeQuery = true)
+    Long countAllCollects();
+
     @Query(value = "select o from Organization o where type='fundacja'")
     List<Organization> findAllFoundations();
 

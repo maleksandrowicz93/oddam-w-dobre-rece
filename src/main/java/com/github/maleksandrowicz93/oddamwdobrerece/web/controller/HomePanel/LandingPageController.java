@@ -62,4 +62,12 @@ public class LandingPageController {
     @ModelAttribute("collects")
     public List<Organization> getAllLocalCollects() { return organizationRepository.findAllLocalCollects(); }
 
+    @ModelAttribute("amountOfAllFoundations")
+    public Long getAmountOfAllFoundations() { return organizationRepository.countAllFoundations(); }
+
+    @ModelAttribute("amountOfAllPrivateOrganizations")
+    public Long getAmountOfAllPrivateOrganizations() { return organizationRepository.countAllPrivateOrganizations(); }
+
+    @ModelAttribute("amountOfAllCollects")
+    public Long getAmountOfAllCollects() { return organizationRepository.countAllCollects(); }
 }
