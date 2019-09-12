@@ -271,8 +271,6 @@ document.addEventListener("DOMContentLoaded", function () {
             this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 6;
             this.$step.parentElement.hidden = this.currentStep >= 6;
 
-            // TODO: get data from inputs and show them in summary
-
             var amountOfBags = document.getElementById("amountOfBags");
             var address = document.getElementById("address");
             var city = document.getElementById("city");
@@ -403,11 +401,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         /**
          * Submit form
-         *
-         * TODO: validation, send data to server
          */
-
-
 
         submit(e) {
             e.preventDefault();
