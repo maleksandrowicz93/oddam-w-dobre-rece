@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$buttonsContainer = $el.querySelector(".help--buttons");
       this.$slidesContainers = $el.querySelectorAll(".help--slides");
       this.currentSlide = this.$buttonsContainer.querySelector(".active").parentElement.dataset.id;
+      this.$paginatorsContainer = $el.querySelector(".help--slides-pagination");
+      this.$pagesContainers = $el.querySelectorAll(".help--slides-items");
+      this.currentPage = this.$paginatorsContainer.querySelector(".active").parentElement.dataset.page;
       this.init();
     }
 
@@ -28,8 +31,8 @@ document.addEventListener("DOMContentLoaded", function() {
       /**
        * Pagination buttons
        */
-      this.$el.addEventListener("click", e => {
-        if (e.target.classList.contains("btn") && e.target.parentElement.parentElement.classList.contains("help--slides-pagination")) {
+      this.$paginatorsContainer.addEventListener("click", e => {
+        if (e.target.classList.contains("btn")) {
           this.changePage(e);
         }
       });
@@ -38,13 +41,14 @@ document.addEventListener("DOMContentLoaded", function() {
     changeSlide(e) {
       e.preventDefault();
       const $btn = e.target;
+      console.log("elo");
 
       // Buttons Active class change
       [...this.$buttonsContainer.children].forEach(btn => btn.firstElementChild.classList.remove("active"));
-      $btn.classList.add("active");
+      $btn.classList.add("active"); console.log(this.currentSlide.classList);
 
       // Current slide
-      this.currentSlide = $btn.parentElement.dataset.id;
+      this.currentSlide = $btn.parentElement.dataset.id; console.log(this.currentSlide.classList);
 
       // Slides active class change
       this.$slidesContainers.forEach(el => {
@@ -56,14 +60,26 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     }
 
-    /**
-     * TODO: callback to page change event
-     */
     changePage(e) {
       e.preventDefault();
-      const page = e.target.dataset.page;
+      const $btn = e.target;
+      console.log("elo");
 
-      console.log(page);
+      // Buttons Active class change
+      [...this.$paginatorsContainer.children].forEach(btn => btn.firstElementChild.classList.remove("active"));
+      $btn.classList.add("active"); console.log(this.currentPage.classList);
+
+      // Current slide
+      this.currentPage = $btn.parentElement.dataset.page; console.log(this.currentPage.classList);
+
+      // Slides active class change
+      this.$pagesContainers.forEach(el => {
+        el.classList.remove("active");
+
+      if (el.dataset.page === this.currentPage) {
+        el.classList.add("active");
+      }
+    });
     }
   }
   const helpSection = document.querySelector(".help");
