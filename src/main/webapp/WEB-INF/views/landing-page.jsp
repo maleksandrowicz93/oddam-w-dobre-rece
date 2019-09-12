@@ -123,148 +123,125 @@
         <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
             Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>
 
-        <ul class="help--slides-items">
-            <c:forEach var="foundation" items="${foundations}">
-                <li>
-                    <div class="col">
-                        <div class="title">Fundacja "${foundation.name}"</div>
-                        <div class="subtitle">Cel i misja: ${foundation.description}.</div>
-                    </div>
+        <c:forEach begin="0" end="${amountOfAllFoundations}" step="4" varStatus="iterator">
+            <!-- PAGE ${iterator.count} -->
+            <c:choose>
+                <c:when test="${iterator.count==1}">
+                    <ul class="help--slides-items active" data-page="${iterator.count}">
+                        <c:forEach var="foundation" items="${foundations}"
+                                   begin="${iterator.index}" end="${iterator.index+3}">
+                            <li>
+                                <div class="col">
+                                    <div class="title">Fundacja "${foundation.name}"</div>
+                                    <div class="subtitle">Cel i misja: ${foundation.description}.</div>
+                                </div>
 
-                    <div class="col">
-                        <div class="text">${foundation.needs}</div>
-                    </div>
-                </li>
+                                <div class="col">
+                                    <div class="text">${foundation.needs}</div>
+                                </div>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </c:when>
+                <c:otherwise>
+                    <ul class="help--slides-items" data-page="${iterator.count}">
+                        <c:forEach var="foundation" items="${foundations}"
+                                   begin="${iterator.index}" end="${iterator.index+3}">
+                            <li>
+                                <div class="col">
+                                    <div class="title">Fundacja "${foundation.name}"</div>
+                                    <div class="subtitle">Cel i misja: ${foundation.description}.</div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="text">${foundation.needs}</div>
+                                </div>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+
+        <!-- PAGINATION -->
+        <ul class="help--slides-pagination">
+            <c:forEach begin="0" end="${amountOfAllFoundations}" step="4" varStatus="paginator">
+                <c:choose>
+                    <c:when test="${paginator.count==1}">
+                        <li data-page="${paginator.count}">
+                            <a href="#" class="btn btn--small btn--without-border active">${paginator.count}</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li data-page="${paginator.count}">
+                            <a href="#" class="btn btn--small btn--without-border">${paginator.count}</a></li>
+                    </c:otherwise>
+                </c:choose>
             </c:forEach>
         </ul>
 
-        <ul class="help--slides-pagination">
-            <li><a href="#" class="btn btn--small btn--without-border active" data-page="1">1</a></li>
-            <li><a href="#" class="btn btn--small btn--without-border" data-page="2">2</a></li>
-            <li><a href="#" class="btn btn--small btn--without-border" data-page="3">3</a></li>
-        </ul>
     </div>
 
     <!-- SLIDE 2 -->
     <div class="help--slides" data-id="2">
         <p>W naszej bazie znajdziesz listę zweryfikowanych Organizacji pozarządowych, z którymi współpracujemy.
             Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>
-        <ul class="help--slides-items active" data-page="1">
-            <%--<c:forEach var="privateOrganization" items="${privateOrganizations}">--%>
-            <%--<li>--%>
-            <%--<div class="col">--%>
-            <%--<div class="title">Fundacja "${privateOrganization.name}"</div>--%>
-            <%--<div class="subtitle">Cel i misja: ${privateOrganization.description}.</div>--%>
-            <%--</div>--%>
 
-            <%--<div class="col">--%>
-            <%--<div class="text">${privateOrganization.needs}</div>--%>
-            <%--</div>--%>
-            <%--</li>--%>
-            <%--</c:forEach>--%>
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja "Fundacja"</div>
-                    <div class="subtitle">Cel i misja: pomóc.</div>
-                </div>
+        <c:forEach begin="0" end="${amountOfAllPrivateOrganizations}" step="4" varStatus="iterator">
+            <!-- PAGE ${iterator.count} -->
+            <c:choose>
+                <c:when test="${iterator.count==1}">
+                    <ul class="help--slides-items active" data-page="${iterator.count}">
+                        <c:forEach var="privateOrgnization" items="${privateOrganizations}"
+                                   begin="${iterator.index}" end="${iterator.index+3}">
+                            <li>
+                                <div class="col">
+                                    <div class="title">Fundacja "${privateOrgnization.name}"</div>
+                                    <div class="subtitle">Cel i misja: ${privateOrgnization.description}.</div>
+                                </div>
 
-                <div class="col">
-                    <div class="text">Cokolwiek</div>
-                </div>
-            </li>
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja "Fundacja"</div>
-                    <div class="subtitle">Cel i misja: pomóc.</div>
-                </div>
+                                <div class="col">
+                                    <div class="text">${privateOrgnization.needs}</div>
+                                </div>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </c:when>
+                <c:otherwise>
+                    <ul class="help--slides-items" data-page="${iterator.count}">
+                        <c:forEach var="privateOrgnization" items="${privateOrganizations}"
+                                   begin="${iterator.index}" end="${iterator.index+3}">
+                            <li>
+                                <div class="col">
+                                    <div class="title">Fundacja "${privateOrgnization.name}"</div>
+                                    <div class="subtitle">Cel i misja: ${privateOrgnization.description}.</div>
+                                </div>
 
-                <div class="col">
-                    <div class="text">Cokolwiek</div>
-                </div>
-            </li>
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja "Fundacja"</div>
-                    <div class="subtitle">Cel i misja: pomóc.</div>
-                </div>
+                                <div class="col">
+                                    <div class="text">${privateOrgnization.needs}</div>
+                                </div>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
 
-                <div class="col">
-                    <div class="text">Cokolwiek</div>
-                </div>
-            </li>
-        </ul>
-
-        <ul class="help--slides-items" data-page="2">
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja "Fundacja"</div>
-                    <div class="subtitle">Cel i misja: pomóc.</div>
-                </div>
-
-                <div class="col">
-                    <div class="text">Cokolwiek</div>
-                </div>
-            </li>
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja "Fundacja"</div>
-                    <div class="subtitle">Cel i misja: pomóc.</div>
-                </div>
-
-                <div class="col">
-                    <div class="text">Cokolwiek</div>
-                </div>
-            </li>
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja "Fundacja"</div>
-                    <div class="subtitle">Cel i misja: pomóc.</div>
-                </div>
-
-                <div class="col">
-                    <div class="text">Cokolwiek</div>
-                </div>
-            </li>
-        </ul>
-
-        <ul class="help--slides-items" data-page="3">
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja "Fundacja"</div>
-                    <div class="subtitle">Cel i misja: pomóc.</div>
-                </div>
-
-                <div class="col">
-                    <div class="text">Cokolwiek</div>
-                </div>
-            </li>
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja "Fundacja"</div>
-                    <div class="subtitle">Cel i misja: pomóc.</div>
-                </div>
-
-                <div class="col">
-                    <div class="text">Cokolwiek</div>
-                </div>
-            </li>
-            <li>
-                <div class="col">
-                    <div class="title">Fundacja "Fundacja"</div>
-                    <div class="subtitle">Cel i misja: pomóc.</div>
-                </div>
-
-                <div class="col">
-                    <div class="text">Cokolwiek</div>
-                </div>
-            </li>
-        </ul>
-
+        <!-- PAGINATION -->
         <ul class="help--slides-pagination">
-            <li data-page="1"><a href="#" class="btn btn--small btn--without-border active">1</a></li>
-            <li data-page="2"><a href="#" class="btn btn--small btn--without-border">2</a></li>
-            <li data-page="3"><a href="#" class="btn btn--small btn--without-border">3</a></li>
+            <c:forEach begin="0" end="${amountOfAllPrivateOrganizations}" step="4" varStatus="paginator">
+                <c:choose>
+                    <c:when test="${paginator.count==1}">
+                        <li data-page="${paginator.count}">
+                            <a href="#" class="btn btn--small btn--without-border active">${paginator.count}</a></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li data-page="${paginator.count}">
+                            <a href="#" class="btn btn--small btn--without-border">${paginator.count}</a></li>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
         </ul>
+
     </div>
 
     <!-- SLIDE 3 -->
@@ -273,7 +250,7 @@
             Możesz sprawdzić czym się zajmują, komu pomagają i czego potrzebują.</p>
 
         <c:forEach begin="0" end="${amountOfAllCollects}" step="4" varStatus="iterator">
-            <!-- SLIDE ${iterator.count} -->
+            <!-- PAGE ${iterator.count} -->
             <c:choose>
                 <c:when test="${iterator.count==1}">
                     <ul class="help--slides-items active" data-page="${iterator.count}">
@@ -327,7 +304,6 @@
                 </c:choose>
             </c:forEach>
         </ul>
-
 
     </div>
 </section>

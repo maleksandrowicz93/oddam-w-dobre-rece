@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", function () {
                      */
                     this.$paginatorsContainer.addEventListener("click", e => {
                         if (e.target.classList.contains("btn")) {
-                            console.log("elo");
                             this.changePage(e);
                         }
                     });
