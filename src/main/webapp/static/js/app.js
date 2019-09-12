@@ -6,8 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
         constructor($el) {
             this.$el = $el;
             this.$buttonsContainer = $el.querySelector(".help--buttons");
-            this.$slidesContainers = $el.querySelectorAll(".help--slides");
+            this.$slidesContainer = $el.querySelectorAll(".help--slides");
             this.currentSlide = this.$buttonsContainer.querySelector(".active").parentElement.dataset.id;
+            this.$paginatorsContainer = $el.querySelector(".help--slides.active .help--slides-pagination");
+            this.$pagesContainer = $el.querySelectorAll(".help--slides.active .help--slides-items");
+            this.currentPage = this.$paginatorsContainer.querySelector(".active").parentElement.dataset.page;
             this.init();
         }
 
@@ -20,26 +23,21 @@ document.addEventListener("DOMContentLoaded", function () {
              * Slide buttons
              */
             this.$buttonsContainer.addEventListener("click", e => {
-                if(e.target.classList.contains("btn")
-        )
-            {
-                this.changeSlide(e);
-            }
-        })
-            ;
+                if (e.target.classList.contains("btn")) {
+                    this.changeSlide(e);
+                    /**
+                     * Pagination buttons
+                     */
+                    this.$paginatorsContainer.addEventListener("click", e => {
+                        if (e.target.classList.contains("btn")) {
+                            console.log("elo");
+                            this.changePage(e);
+                        }
+                    });
+                }
+            });
 
-            /**
-             * Pagination buttons
-             */
-            this.$el.addEventListener("click", e => {
-                if(e
-                .target.classList.contains("btn") && e.target.parentElement.parentElement.classList.contains("help--slides-pagination")
-        )
-            {
-                this.changePage(e);
-            }
-        })
-            ;
+
         }
 
         changeSlide(e) {
@@ -47,35 +45,44 @@ document.addEventListener("DOMContentLoaded", function () {
             const $btn = e.target;
 
             // Buttons Active class change
-            [...this.$buttonsContainer.children
-        ].
-            forEach(btn => btn.firstElementChild.classList.remove("active")
-        )
-            ;
+            [...this.$buttonsContainer.children].forEach(btn => btn.firstElementChild.classList.remove("active"));
             $btn.classList.add("active");
 
             // Current slide
             this.currentSlide = $btn.parentElement.dataset.id;
 
             // Slides active class change
-            this.$slidesContainers.forEach(el => {
+            this.$slidesContainer.forEach(el => {
                 el.classList.remove("active");
 
             if (el.dataset.id === this.currentSlide) {
                 el.classList.add("active");
             }
-        })
-            ;
+
+            this.$paginatorsContainer = this.$el.querySelector(".help--slides.active .help--slides-pagination");
+            this.$pagesContainer = this.$el.querySelectorAll(".help--slides.active .help--slides-items");
+        });
         }
 
-        /**
-         * TODO: callback to page change event
-         */
         changePage(e) {
             e.preventDefault();
-            const page = e.target.dataset.page;
+            const $btn = e.target;
+            console.log($btn);
+            // Buttons Active class change
+            [...this.$paginatorsContainer.children].forEach(btn => btn.firstElementChild.classList.remove("active"));
+            $btn.classList.add("active");
 
-            console.log(page);
+            // Current slide
+            this.currentPage = $btn.parentElement.dataset.page;
+
+            // Slides active class change
+            this.$pagesContainer.forEach(el => {
+                el.classList.remove("active");
+
+            if (el.dataset.page === this.currentPage) {
+                el.classList.add("active");
+            }
+        });
         }
     }
 
