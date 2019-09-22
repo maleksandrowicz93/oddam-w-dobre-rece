@@ -1,12 +1,16 @@
 package com.github.maleksandrowicz93.oddamwdobrerece.web.controller.HomePanel;
 
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.Organization;
+import com.github.maleksandrowicz93.oddamwdobrerece.domain.model.User;
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.GiftRepository;
 import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.OrganizationRepository;
+import com.github.maleksandrowicz93.oddamwdobrerece.domain.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller()
@@ -14,14 +18,23 @@ public class LandingPageController {
 
     private GiftRepository giftRepository;
     private OrganizationRepository organizationRepository;
+    private UserRepository userRepository;
 
-    public LandingPageController(GiftRepository giftRepository, OrganizationRepository organizationRepository) {
+    public LandingPageController(GiftRepository giftRepository, OrganizationRepository organizationRepository, UserRepository userRepository) {
         this.giftRepository = giftRepository;
         this.organizationRepository = organizationRepository;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/")
-    public String displayLandingPage() {
+    public String displayLandingPage(Principal principal, Model model) {
+        User user;
+        if (principal == null) {
+            user = new User();
+        } else {
+            user = userRepository.findFirstByUsername(principal.getName());
+        }
+        model.addAttribute("user", user);
         return "landing-page";
     }
 
