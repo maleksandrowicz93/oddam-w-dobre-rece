@@ -10,6 +10,7 @@
 
 <jsp:include page="header.jsp"/>
 
+<!-- STATS -->
 <section class="stats" id="stats">
     <div class="container container--85">
         <div class="stats--item">
@@ -62,6 +63,7 @@
     </div>
 </section>
 
+<!-- STEPS -->
 <section class="steps">
     <h2>Wystarczą 4 proste kroki</h2>
 
@@ -91,6 +93,7 @@
     <a href="/register" class="btn btn--large">Załóż konto</a>
 </section>
 
+<!-- ABOUT -->
 <section class="about-us" id="about">
     <div class="about-us--text">
         <h2>O nas</h2>
@@ -108,6 +111,7 @@
     <div class="about-us--image"><img src="../../static/images/about-us.jpg" alt="People in circle"/></div>
 </section>
 
+<!-- HELP -->
 <section class="help" id="help">
     <h2>Komu pomagamy?</h2>
 
@@ -308,6 +312,7 @@
     </div>
 </section>
 
+<!-- CONTACT -->
 <jsp:include page="footer.jsp"/>
 
 </body>
